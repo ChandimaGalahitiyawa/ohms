@@ -15,25 +15,8 @@ class LoginResponse implements LoginResponseContract
      */
     public function toResponse($request)
     {
-        $user = $request->user();
-
-        if ($request->wantsJson()) {
-            return response()->json(['two_factor' => false]);
-        }
-        
-        // Redirect based on user role
-        if ($user->hasRole(['admin'])) {
-            return redirect()->route('AdminDashboard');
-        } elseif ($user->hasRole(['user'])) {
-            return redirect()->route('UserDashboard');
-        } elseif ($user->hasRole(['member'])) {
-            return redirect()->route('MemberDashboard');
-        } else {
-            // Default redirect if no matching role is found
-            return redirect()->intended(Fortify::redirects('login'));
-        }        
+        return $request->wantsJson()
+                    ? response()->json(['two_factor' => false])
+                    : redirect()->intended(Fortify::redirects('login'));
     }
 }
-
-
-
