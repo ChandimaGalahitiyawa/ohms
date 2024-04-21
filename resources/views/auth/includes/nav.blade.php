@@ -6,7 +6,7 @@
 
           <div class="container flex flex-wrap items-center justify-between lg-max:overflow-hidden lg:flex-nowrap">
             
-            <a class="py-2.5 text-sm mr-4 ml-4 whitespace-nowrap font-bold text-slate-700 lg:ml-0" href="../../../pages/dashboards/default.html">Soft UI Dashboard PRO</a>
+            <a class="py-2.5 text-sm mr-4 ml-4 whitespace-nowrap font-bold text-slate-700 lg:ml-0" href="/">OHMS</a>
             
             <button aria-expanded="false" nav-collapse-trigger class="px-3 py-1 ml-2 leading-none bg-transparent rounded-lg shadow-none cursor-pointer lg:hidden text-lg text-slate-700">
               <span class="inline-block mt-2 align-middle w-6 h-6 bg-none">

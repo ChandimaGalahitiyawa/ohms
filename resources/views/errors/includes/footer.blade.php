@@ -32,7 +32,7 @@
           <p class="mb-0 text-slate-400">
             Copyright ©
             <script>document.write(new Date().getFullYear())</script>
-            OHMS. All rights reserved.
+            Soft by Creative Tim.
           </p>
         </div>
       </div>
