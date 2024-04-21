@@ -13,6 +13,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 use App\Http\Responses\CustomLoginResponse; // custom login response
+use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract; // custom registration response
+
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -34,6 +36,12 @@ class FortifyServiceProvider extends ServiceProvider
             \Laravel\Fortify\Contracts\LoginResponse::class,
             \App\Http\Responses\CustomLoginResponse::class
         );
+
+            // Custom registration response
+            $this->app->singleton(
+                RegisterResponseContract::class,
+                \App\Http\Responses\CustomRegisterResponse::class // Ensure this custom response class is created
+            );
 
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
