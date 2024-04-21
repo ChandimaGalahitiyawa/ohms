@@ -12,7 +12,7 @@ class CustomRegisterResponse implements RegisterResponseContract
         $user = $request->user(); // Retrieve the user from the request
 
         // Check the user's role and redirect accordingly
-        if ($user->hasRole('user')) { // Make sure you have a role mechanism like spatie/laravel-permission
+        if ($user->hasRole('user')) { // Check if user role is 'user'
             return redirect('/user/dashboard');
         }
 
