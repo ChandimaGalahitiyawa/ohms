@@ -12,8 +12,8 @@ class CustomRegisterResponse implements RegisterResponseContract
         $user = $request->user(); // Retrieve the user from the request
 
         // Check the user's role and redirect accordingly
-        if ($user->hasRole('user')) { // Check if user role is 'user'
-            return redirect('/user/dashboard');
+        if ($user->hasRole('patient')) { // Check if user role is 'user'
+            return redirect('/patient/dashboard');
         }
 
         // Default redirect

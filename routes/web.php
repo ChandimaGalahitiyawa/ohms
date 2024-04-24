@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\user\UserController;
+use App\Http\Controllers\PatientController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\member\MemberController;
 
@@ -32,6 +32,15 @@ Route::middleware([
     })->name('dashboard');
 });
 
+// patient register routes
+Route::controller(PatientController::class)->group(function () {
+    Route::post('/createPatient', 'createPatient')->name('createPatient');
+});
+
+// // patient register otp routes
+// Route::post('/otp', 'otp')->name('otp');
+
+
 
 // admin routes
 Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstream.auth_session'), 'verified',])->group(function () {
@@ -54,11 +63,11 @@ Route::prefix('member')->middleware(['auth:sanctum', 'role:member', config('jets
 });
 
 // user routes
-Route::prefix('user')->middleware(['auth:sanctum', 'role:user', config('jetstream.auth_session'), 'verified',])->group(function () {
+Route::prefix('patient')->middleware(['auth:sanctum', 'role:patient', config('jetstream.auth_session'), 'verified',])->group(function () {
 
     // user dashboard routes
-    Route::controller(UserController::class)->group(function () {
-        Route::get('/dashboard', 'dashboard')->name('UserDashboard');
+    Route::controller(PatientController::class)->group(function () {
+        Route::get('/dashboard', 'dashboard')->name('PatientDashboard');
     });
 
 });

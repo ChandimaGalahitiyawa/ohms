@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <!-- header -->
-  @include('user.includes.headerlinks')
+  @include('patient.includes.headerlinks')
 
   <body class="m-0 font-sans antialiased font-normal text-left leading-default text-base dark:bg-slate-950 bg-gray-50 text-slate-500 dark:text-white/80">
     <!-- sidenav -->
-      @include('user.includes.sidenav')
+      @include('patient.includes.sidenav')
 
 
     <main class="ease-soft-in-out xl:ml-68 relative h-full max-h-screen rounded-xl transition-all duration-200">
 
       <!-- Navbar -->
-      @include('user.includes.nav')
+      @include('patient.includes.nav')
 
       <!-- main content area -->
       @yield('content')
@@ -97,5 +97,5 @@
     </main>
   </body>
   <!-- Footer links -->
-  @include('user.includes.footerlinks')
+  @include('patient.includes.footerlinks')
 </html>
