@@ -39,7 +39,7 @@
               <div class="relative">
                 <img class="relative w-full max-w-125 z-2" src="https://demos.creative-tim.com/soft-ui-dashboard-pro/assets/img/illustrations/lock.png" alt="chart-ill">
               </div>
-              <h4 class="mt-12 font-bold text-white">"Soft UI Design"</h4>
+              <h4 class="mt-12 font-bold text-white">"Ipsum Dolor Sit Amet"</h4>
               <p class="text-white">Just as it takes a company to sustain a product, it takes a community to sustain a protocol.</p>
             </div>
           </div>
@@ -48,4 +48,4 @@
   </div>
 
   </section>
-@endsection
+    @endsection

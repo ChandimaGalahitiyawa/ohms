@@ -17,8 +17,8 @@ class CustomLoginResponse implements LoginResponseContract
 
         if ($user->hasRole(['admin'])) {
             return redirect()->route('AdminDashboard');
-        } elseif ($user->hasRole(['user'])) {
-            return redirect()->route('UserDashboard');
+        } elseif ($user->hasRole(['patient'])) {
+            return redirect()->route('PatientDashboard');
         } elseif ($user->hasRole(['member'])) {
             return redirect()->route('MemberDashboard');
         } else {

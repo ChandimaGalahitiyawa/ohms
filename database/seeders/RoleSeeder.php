@@ -15,6 +15,6 @@ class RoleSeeder extends Seeder
     {
         Role::create(['name' => 'admin']); // system admin
         Role::create(['name' => 'member']); // medical service provider 
-        Role::create(['name' => 'user']); // patient
+        Role::create(['name' => 'patient']); // patient
     }
 }

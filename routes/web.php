@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\user\UserController;
+use App\Http\Controllers\PatientController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\member\MemberController;
+use App\Http\Controllers\MemberDetailsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,13 +33,33 @@ Route::middleware([
     })->name('dashboard');
 });
 
+// patient register routes
+Route::controller(PatientController::class)->group(function () {
+    Route::post('/createPatient', 'createPatient')->name('createPatient');
+});
+
+// // patient register otp routes
+// Route::post('/otp', 'otp')->name('otp');
+
+
 
 // admin routes
 Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstream.auth_session'), 'verified',])->group(function () {
 
-    // admin dashboard routes
+    // Admin Settings routes
     Route::controller(AdminController::class)->group(function () {
+        // Dashboard routes
         Route::get('/dashboard', 'dashboard')->name('AdminDashboard');
+
+        // admin dashboard routes
+        Route::get('/settings/profile', 'AdminSettings')->name('AdminSettings');
+
+        // Member Management routes
+        Route::get('/users/members', 'MemberManagement')->name('MemberManagement');
+
+        // Patients Management routes
+        Route::get('/users/patients', 'PatientsManagement')->name('PatientsManagement');
+        Route::get('/users/patients-add', 'PatientsManagementAdd')->name('PatientsManagementAdd');
     });
 
 });
@@ -54,11 +75,11 @@ Route::prefix('member')->middleware(['auth:sanctum', 'role:member', config('jets
 });
 
 // user routes
-Route::prefix('user')->middleware(['auth:sanctum', 'role:user', config('jetstream.auth_session'), 'verified',])->group(function () {
+Route::prefix('patient')->middleware(['auth:sanctum', 'role:patient', config('jetstream.auth_session'), 'verified',])->group(function () {
 
     // user dashboard routes
-    Route::controller(UserController::class)->group(function () {
-        Route::get('/dashboard', 'dashboard')->name('UserDashboard');
+    Route::controller(PatientController::class)->group(function () {
+        Route::get('/dashboard', 'dashboard')->name('PatientDashboard');
     });
 
 });
