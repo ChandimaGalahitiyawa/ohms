@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('last_name');
             $table->string('nic')->nullable();
-            $table->string('phone')->nullable(); // Added phone number field
+            $table->string('phone')->nullable();
+            $table->string('nationality')->default('Local');
+            $table->string('passport')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

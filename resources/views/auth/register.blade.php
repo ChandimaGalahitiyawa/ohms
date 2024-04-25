@@ -2,9 +2,9 @@
 
 @section('content')
 <section>
-    <div class="relative flex items-center min-h-screen p-0 overflow-hidden bg-center bg-cover">
+    <div class=" relative flex items-center min-h-screen p-0 overflow-hidden bg-center bg-cover">
       <div class="container z-1">
-        <div class="flex flex-wrap -mx-3">
+        <div class=" flex flex-wrap -mx-3">
 
           <div class="flex flex-col w-full max-w-full px-3 mx-auto lg:mx-0 shrink-0 md:flex-0 md:w-7/12 lg:w-5/12 xl:w-4/12">
             <div class="relative flex flex-col min-w-0 break-words bg-transparent border-0 shadow-none lg:py4 dark:bg-gray-950 rounded-2xl bg-clip-border">
@@ -17,42 +17,30 @@
                   <form role="form" method="POST" action="{{ route('createPatient') }}">
                     @csrf  
   
-                    <!-- Fist Name Field -->
-                    <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Fist Name</label>
-                    <div class="mb-4">
-                      <input id="FirstName" type="text" name="FirstName" :value="old('name')"  autofocus autocomplete="name" placeholder="First Name" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
-                      @error('FirstName')
-                          <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                      @enderror
-                    </div>
-                    
-                    <!-- Last Name Field -->
-                    <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Last Name</label>
-                    <div class="mb-4">
-                      <input id="name" type="text" name="LastName" :value="old('name')"  autofocus autocomplete="name" placeholder="Last Name" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
-                      @error('LastName')
-                          <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                      @enderror
-                    </div>
+                    <div class="flex">
+                      <!-- First Name Field -->
+                      <div class="flex flex-col mr-4">
+                          <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">First Name</label>
+                          <div class="mb-4">
+                              <input id="FirstName" type="text" name="FirstName" :value="old('name')" autofocus autocomplete="name" placeholder="First Name" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
+                              @error('FirstName')
+                              <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                              @enderror
+                          </div>
+                      </div>
+                  
+                      <!-- Last Name Field -->
+                      <div class="flex flex-col">
+                          <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Last Name</label>
+                          <div class="mb-4">
+                              <input id="name" type="text" name="LastName" :value="old('name')" autofocus autocomplete="name" placeholder="Last Name" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
+                              @error('LastName')
+                              <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                              @enderror
+                          </div>
+                      </div>
+                  </div>
   
-                    <!-- Email Field -->
-                    <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Email</label>
-                    <div class="mb-4">
-                      <input id="email" type="email" name="email" :value="old('email')"  autocomplete="username" placeholder="Email" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
-                      @error('email')
-                          <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                      @enderror
-                    </div>
-  
-                    <!-- Nic Field -->
-                    <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">NIC</label>
-                    <div class="mb-4">
-                      <input id="nic" type="text" name="nic"  autocomplete="nic" placeholder="NIC" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
-                      @error('nic')
-                          <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                      @enderror
-                    </div>
-
                     <!-- Phone Field -->
                     <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Phone number</label>
                     <div class="mb-4">
@@ -61,6 +49,56 @@
                           <p class="text-red-500 text-xs italic">{{ $message }}</p>
                       @enderror
                     </div>
+
+                    <!-- Email Field -->
+                    <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Email</label>
+                    <div class="mb-4">
+                      <input id="email" type="email" name="email" :value="old('email')"  autocomplete="username" placeholder="Email" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
+                      @error('email')
+                          <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                      @enderror
+                    </div>
+                  
+                  <!-- Nationality Field -->
+                  <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Nationality</label>
+                  <div class="mb-4">
+                      <select name="nationality" id="nationality" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
+                          <option value="Local" selected>Local</option>
+                          <option value="Foreign">Foreign</option>
+                      </select>
+                      @error('nationality')
+                      <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                      @enderror
+                  </div>
+
+                  <!-- Document Number Field -->
+                  <div class="mb-4" id="documentFields">
+                      <label id="documentLabel" class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">National Identity Card</label>
+                      <input id="nic" type="text" name="nic" placeholder="NIC" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"/>
+                      <input id="passport" type="text" name="passport" placeholder="Passport" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" style="display:none;"/>
+                      @error('nic')
+                      <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                      @enderror
+                  </div>
+
+                  <script>
+                      document.getElementById('nationality').addEventListener('change', function() {
+                          if (this.value !== 'Local') {
+                              document.getElementById('documentLabel').innerText = 'Passport Number';
+                              document.getElementById('nic').style.display = 'none';
+                              document.getElementById('passport').style.display = 'block';
+                          } else {
+                              document.getElementById('documentLabel').innerText = 'National Identity Card';
+                              document.getElementById('nic').style.display = 'block';
+                              document.getElementById('passport').style.display = 'none';
+                          }
+                      });
+                  </script>
+
+
+
+
+
   
                     <!-- Password Field -->
                     <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Password</label>
@@ -116,5 +154,6 @@
           </div>
         </div>
     </div
+
   </section>
 @endsection

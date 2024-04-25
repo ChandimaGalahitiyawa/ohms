@@ -20,7 +20,7 @@
 
               <ul class="flex flex-col pl-0 mx-auto mb-0 list-none md-max:w-full lg:flex-row">
 
-                <li class="relative mx-2 group md-max:static lg:after:content-[''] lg:after:top-0 lg:hover:after:top-full lg:after:absolute lg:after:left-0 lg:after:-bottom-6 lg:after:w-full lg:after:h-full">
+                {{-- <li class="relative mx-2 group md-max:static lg:after:content-[''] lg:after:top-0 lg:hover:after:top-full lg:after:absolute lg:after:left-0 lg:after:-bottom-6 lg:after:w-full lg:after:h-full">
                   
                   <a aria-expanded="false" nav-dropdown-trigger="pages" role="button" class="flex items-center justify-between px-4 py-2 pl-2 font-normal transition-all cursor-pointer select-none text-slate-700 lg-max:text-slate-700 ease-soft-in-out lg:px-2 text-sm">
                     Pages
@@ -1180,11 +1180,11 @@
                       </div>
                     </div>
                   </div>
-                </li>
+                </li> --}}
               </ul>
               <ul class="hidden pl-0 mb-0 list-none lg:block lg:flex-row">
                 <li>
-                  <a href="https://www.creative-tim.com/product/soft-ui-dashboard-pro-tailwind" target="_blank" class="inline-block px-8 py-2 mb-0 mr-1 font-bold text-center text-white uppercase align-middle transition-all border-0 cursor-pointer ease-soft-in-out text-xs leading-pro bg-gradient-to-tl from-purple-700 to-pink-500 tracking-tight-soft shadow-soft-md bg-150 bg-x-25 rounded-7 hover:scale-102 active:opacity-85">Buy Now</a>
+                  <a href="#" target="_blank" class="inline-block px-8 py-2 mb-0 mr-1 font-bold text-center text-white uppercase align-middle transition-all border-0 cursor-pointer ease-soft-in-out text-xs leading-pro bg-gradient-to-tl from-purple-700 to-pink-500 tracking-tight-soft shadow-soft-md bg-150 bg-x-25 rounded-7 hover:scale-102 active:opacity-85">Contact us</a>
                 </li>
               </ul>
             </div>

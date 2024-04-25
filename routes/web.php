@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\member\MemberController;
+use App\Http\Controllers\MemberDetailsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,9 +46,20 @@ Route::controller(PatientController::class)->group(function () {
 // admin routes
 Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstream.auth_session'), 'verified',])->group(function () {
 
-    // admin dashboard routes
+    // Admin Settings routes
     Route::controller(AdminController::class)->group(function () {
+        // Dashboard routes
         Route::get('/dashboard', 'dashboard')->name('AdminDashboard');
+
+        // admin dashboard routes
+        Route::get('/settings/profile', 'AdminSettings')->name('AdminSettings');
+
+        // Member Management routes
+        Route::get('/users/members', 'MemberManagement')->name('MemberManagement');
+
+        // Patients Management routes
+        Route::get('/users/patients', 'PatientsManagement')->name('PatientsManagement');
+        Route::get('/users/patients-add', 'PatientsManagementAdd')->name('PatientsManagementAdd');
     });
 
 });
