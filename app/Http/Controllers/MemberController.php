@@ -3,22 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Patient;
+use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 
-class PatientController extends Controller
+class MemberController extends Controller
 {
+
     // patient dashboard route
     public function dashboard()
     {
-        return view('patient.dashboard');
+        return view('member.dashboard');
     }
 
-    // patient regisration
-    public function createPatient(Request $request)
+    // Member regisration
+    public function createMember(Request $request)
     {
         $validatedData = $request->validate([
             'FirstName' => 'required|string|max:255',
@@ -39,9 +40,9 @@ class PatientController extends Controller
     
         $nicOrPassport = $request->input('nationality') === 'Local' ? $validatedData['nic'] : $validatedData['passport'];
     
-        $user->assignRole('patient'); // Ensure you have roles set up correctly
+        $user->assignRole('member'); // Ensure you have roles set up correctly
     
-        $patient = new Patient([
+        $member = new Member([
             'last_name' => $validatedData['LastName'],
             'nic' => $request->input('nationality') === 'Local' ? $nicOrPassport : null,
             'passport' => $request->input('nationality') !== 'Local' ? $nicOrPassport : null,
@@ -49,20 +50,18 @@ class PatientController extends Controller
             'nationality' => $validatedData['nationality'],
             'user_id' => $user->id,
         ]);
-        $patient->save();
+        $member->save();
     
         // Determine if the registration is by admin
         if ($request->input('registered_by_admin') == 'yes') {
     
-            return redirect()->route('PatientsManagement');
+            return redirect()->route('MembersManagement');
         } else {
             // Log in the user immediately
             auth()->login($user);
     
             // Redirect user to set new password on first login
-            return redirect()->route('PatientDashboard')->with('first_login', 'true');
+            return redirect()->route('MembersDashboard')->with('first_login', 'true');
         }
     }
-    
-
 }

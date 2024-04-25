@@ -2,13 +2,13 @@
 
 @section('content')
 
-<div class="flex-auto p-6">
+<div class="flex-auto p-6 w-6/12 mx-auto">
     <form role="form" method="POST" action="{{ route('createPatient') }}">
       @csrf  
 
-      <div class="flex">
+      <div class="flex w-full">
         <!-- First Name Field -->
-        <div class="flex flex-col mr-4">
+        <div class="flex flex-col mr-4 w-full lg:w-6/12">
             <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">First Name</label>
             <div class="mb-4">
                 <input id="FirstName" type="text" name="FirstName" :value="old('name')" autofocus autocomplete="name" placeholder="First Name" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
@@ -19,7 +19,7 @@
         </div>
     
         <!-- Last Name Field -->
-        <div class="flex flex-col">
+        <div class="flex flex-col  w-full lg:w-6/12">
             <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Last Name</label>
             <div class="mb-4">
                 <input id="name" type="text" name="LastName" :value="old('name')" autofocus autocomplete="name" placeholder="Last Name" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />

@@ -1,10 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PatientController;
-use App\Http\Controllers\admin\AdminController;
-use App\Http\Controllers\member\MemberController;
-use App\Http\Controllers\MemberDetailsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,10 +36,6 @@ Route::middleware([
 Route::controller(PatientController::class)->group(function () {
     Route::post('/createPatient', 'createPatient')->name('createPatient');
 });
-
-// // patient register otp routes
-// Route::post('/otp', 'otp')->name('otp');
-
 
 
 // admin routes
