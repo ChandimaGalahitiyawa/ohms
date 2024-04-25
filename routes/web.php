@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\CategoriesController;
+use App\Models\Member;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,9 +39,15 @@ Route::controller(PatientController::class)->group(function () {
     Route::post('/createPatient', 'createPatient')->name('createPatient');
 });
 
+// // patient register routes
+// Route::controller(MemberController::class)->group(function () {
+//     Route::post('/createMember', 'createMember')->name('createMember');
+//     Route::get('/users/members-add', 'MembersManagementAdd')->name('MembersManagementAdd');
+// });
+
 
 // admin routes
-Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstream.auth_session'), 'verified',])->group(function () {
+Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstream.auth_session'), 'verified'])->group(function () {
 
     // Admin Settings routes
     Route::controller(AdminController::class)->group(function () {
@@ -50,14 +58,29 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstr
         Route::get('/settings/profile', 'AdminSettings')->name('AdminSettings');
 
         // Member Management routes
-        Route::get('/users/members', 'MemberManagement')->name('MemberManagement');
-
-        // Patients Management routes
+        Route::get('/users/members', 'MembersManagement')->name('MembersManagement');
+        
+        // Patient Management routes
         Route::get('/users/patients', 'PatientsManagement')->name('PatientsManagement');
         Route::get('/users/patients-add', 'PatientsManagementAdd')->name('PatientsManagementAdd');
     });
 
+    // Member Registration routes
+    Route::controller(MemberController::class)->group(function () {
+        Route::post('/createMember', 'createMember')->name('createMember');
+        Route::get('/users/members-add', 'MembersManagementAdd')->name('MembersManagementAdd');
+    });
+
+    // Catagories Management routes
+    Route::controller(CategoriesController::class)->group(function () {
+        Route::post('/createCatagories', 'createCatagories')->name('createCatagories');
+        Route::get('/catagories-add', 'CatagoriesManagementAdd')->name('CatagoriesManagementAdd');
+        Route::get('/catagories', 'CatagoriesManagement')->name('CatagoriesManagement');
+        
+    });
+
 });
+
 
 // member routes
 Route::prefix('member')->middleware(['auth:sanctum', 'role:member', config('jetstream.auth_session'), 'verified',])->group(function () {

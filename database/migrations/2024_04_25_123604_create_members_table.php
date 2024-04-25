@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('nationality')->default('Local');
             $table->string('passport')->nullable();
+            $table->date('dob')->nullable();
+            $table->string('address')->nullable();
+            $table->string('medical-school')->nullable();
+            $table->string('license-number')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

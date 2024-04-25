@@ -12,15 +12,21 @@ use Illuminate\Support\Facades\Password;
 class MemberController extends Controller
 {
 
-    // patient dashboard route
+    // Memebr dashboard route
     public function dashboard()
     {
         return view('member.dashboard');
     }
 
+    public function MembersManagementAdd(Request $request)
+    {
+        return view('admin.users.members-add');
+    }    
+
     // Member regisration
     public function createMember(Request $request)
     {
+
         $validatedData = $request->validate([
             'FirstName' => 'required|string|max:255',
             'LastName' => 'required|string|max:255',
@@ -29,6 +35,10 @@ class MemberController extends Controller
             'passport' => 'nullable|string',
             'nationality' => 'required|string',
             'phone' => 'nullable|string|max:13|min:10',
+            'dob' => 'nullable|date',
+            'address' => 'nullable|string|max:255',
+            'medical-school' => 'nullable|string|max:255',
+            'license-number' => 'nullable|string|max:255',
             'password' => 'required|string|min:8|max:255|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).*$/',
         ]);
     
@@ -47,6 +57,10 @@ class MemberController extends Controller
             'nic' => $request->input('nationality') === 'Local' ? $nicOrPassport : null,
             'passport' => $request->input('nationality') !== 'Local' ? $nicOrPassport : null,
             'phone' => $validatedData['phone'],
+            'dob' => $validatedData['dob'],
+            'address' => $validatedData['address'],
+            'medical-school' => $validatedData['medical-school'],
+            'license-number' => $validatedData['license-number'],
             'nationality' => $validatedData['nationality'],
             'user_id' => $user->id,
         ]);
@@ -56,12 +70,6 @@ class MemberController extends Controller
         if ($request->input('registered_by_admin') == 'yes') {
     
             return redirect()->route('MembersManagement');
-        } else {
-            // Log in the user immediately
-            auth()->login($user);
-    
-            // Redirect user to set new password on first login
-            return redirect()->route('MembersDashboard')->with('first_login', 'true');
         }
     }
 }

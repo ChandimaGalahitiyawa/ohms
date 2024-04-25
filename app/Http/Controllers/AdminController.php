@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
+use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\MemberController;
 
 class AdminController extends Controller
 {
@@ -22,13 +24,17 @@ class AdminController extends Controller
     }
 
     // Admin Member Management
-    public function MemberManagement()
+    //1. Members List
+    public function MembersManagement()
     {
-        return view('admin.users.members');
+        // Fetch all Members with associated user details, ordered by most recent
+        $members = Member::with('user')->orderBy('created_at', 'desc')->get();
+        
+        // Pass the members to the view using compact
+        return view('admin.users.members', compact('members'));
     }
 
     // Patients Management
-
     //1. Pateint List
     public function PatientsManagement()
     {
