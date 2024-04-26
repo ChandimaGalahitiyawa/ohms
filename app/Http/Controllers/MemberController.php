@@ -37,8 +37,8 @@ class MemberController extends Controller
             'phone' => 'nullable|string|max:13|min:10',
             'dob' => 'nullable|date',
             'address' => 'nullable|string|max:255',
-            'medical-school' => 'nullable|string|max:255',
-            'license-number' => 'nullable|string|max:255',
+            'medical_school' => 'nullable|string|max:255',
+            'license_number' => 'nullable|string|max:255',
             'password' => 'required|string|min:8|max:255|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).*$/',
         ]);
     
@@ -59,8 +59,8 @@ class MemberController extends Controller
             'phone' => $validatedData['phone'],
             'dob' => $validatedData['dob'],
             'address' => $validatedData['address'],
-            'medical-school' => $validatedData['medical-school'],
-            'license-number' => $validatedData['license-number'],
+            'medical_school' => $validatedData['medical-school'],
+            'license_number' => $validatedData['license-number'],
             'nationality' => $validatedData['nationality'],
             'user_id' => $user->id,
         ]);
