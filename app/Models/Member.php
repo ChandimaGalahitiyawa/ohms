@@ -15,4 +15,8 @@ class Member extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function specializations()
+    {
+        return $this->belongsToMany(Specialization::class, 'member_specialization');
+    }
 }

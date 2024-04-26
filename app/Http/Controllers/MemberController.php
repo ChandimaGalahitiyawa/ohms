@@ -20,8 +20,9 @@ class MemberController extends Controller
 
     public function MembersManagementAdd(Request $request)
     {
-        return view('admin.users.members-add');
-    }    
+        $specializations = \App\Models\Specialization::all(); // Fetch all specializations
+        return view('admin.users.members-add', compact('specializations'));
+    }
 
     // Member regisration
     public function createMember(Request $request)
@@ -39,6 +40,8 @@ class MemberController extends Controller
             'address' => 'nullable|string|max:255',
             'medical_school' => 'nullable|string|max:255',
             'license_number' => 'nullable|string|max:255',
+            'specializations' => 'required|array',
+            'specializations.*' => 'exists:specializations,id',
             'password' => 'required|string|min:8|max:255|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).*$/',
         ]);
     
@@ -59,12 +62,16 @@ class MemberController extends Controller
             'phone' => $validatedData['phone'],
             'dob' => $validatedData['dob'],
             'address' => $validatedData['address'],
-            'medical_school' => $validatedData['medical-school'],
-            'license_number' => $validatedData['license-number'],
+            'medical_school' => $validatedData['medical_school'],
+            'license_number' => $validatedData['license_number'],
             'nationality' => $validatedData['nationality'],
             'user_id' => $user->id,
         ]);
         $member->save();
+
+        // Attach the specializations
+        $member->specializations()->attach($validatedData['specializations']);
+        
     
         // Determine if the registration is by admin
         if ($request->input('registered_by_admin') == 'yes') {
