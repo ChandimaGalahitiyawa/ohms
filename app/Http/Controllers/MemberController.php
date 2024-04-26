@@ -18,6 +18,14 @@ class MemberController extends Controller
         return view('member.dashboard');
     }
 
+    // Member profile route
+    public function MemberSettings()
+    {
+        return view('member.settings.profile');
+    }
+
+    // Member regisration
+
     public function MembersManagementAdd(Request $request)
     {
         $specializations = \App\Models\Specialization::all(); // Fetch all specializations

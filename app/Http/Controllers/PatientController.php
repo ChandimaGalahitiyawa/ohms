@@ -17,6 +17,12 @@ class PatientController extends Controller
         return view('patient.dashboard');
     }
 
+    // patient profile route
+    public function PatientSettings()
+    {
+        return view('patient.settings.profile');
+    }
+
     // patient regisration
     public function createPatient(Request $request)
     {

@@ -27,11 +27,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
     
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+]);
 
 // patient register routes
 Route::controller(PatientController::class)->group(function () {
@@ -53,7 +49,7 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstr
         // Dashboard routes
         Route::get('/dashboard', 'dashboard')->name('AdminDashboard');
 
-        // admin dashboard routes
+        // Settins routes
         Route::get('/settings/profile', 'AdminSettings')->name('AdminSettings');
 
         // Member Management routes
@@ -78,6 +74,9 @@ Route::prefix('member')->middleware(['auth:sanctum', 'role:member', config('jets
     // member dashboard routes
     Route::controller(MemberController::class)->group(function () {
         Route::get('/dashboard', 'dashboard')->name('MemberDashboard');
+
+    // member profile routes
+    Route::get('/settings/profile', 'MemberSettings')->name('MemberSettings');
     });
 
 });
@@ -88,6 +87,10 @@ Route::prefix('patient')->middleware(['auth:sanctum', 'role:patient', config('je
     // user dashboard routes
     Route::controller(PatientController::class)->group(function () {
         Route::get('/dashboard', 'dashboard')->name('PatientDashboard');
+
+    // member profile routes
+    Route::get('/settings/profile', 'PatientSettings')->name('PatientSettings');
+
     });
 
 });
