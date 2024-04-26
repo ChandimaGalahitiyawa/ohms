@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PatientController;
-use App\Http\Controllers\CategoriesController;
 use App\Models\Member;
 
 /*
@@ -70,15 +69,6 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstr
         Route::post('/createMember', 'createMember')->name('createMember');
         Route::get('/users/members-add', 'MembersManagementAdd')->name('MembersManagementAdd');
     });
-
-    // Catagories Management routes
-    Route::controller(CategoriesController::class)->group(function () {
-        Route::post('/createCatagories', 'createCatagories')->name('createCatagories');
-        Route::get('/catagories-add', 'CatagoriesManagementAdd')->name('CatagoriesManagementAdd');
-        Route::get('/catagories', 'CatagoriesManagement')->name('CatagoriesManagement');
-        
-    });
-
 });
 
 

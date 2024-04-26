@@ -20,8 +20,9 @@ return new class extends Migration
             $table->string('passport')->nullable();
             $table->date('dob')->nullable();
             $table->string('address')->nullable();
-            $table->string('medical-school')->nullable();
-            $table->string('license-number')->nullable();
+            $table->string('medical_school')->nullable();
+            $table->string('license_number')->nullable();
+            $table->string('')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
