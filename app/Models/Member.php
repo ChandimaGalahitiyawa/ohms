@@ -12,7 +12,7 @@ class Member extends Model
     use HasFactory;
 
     // this will allow the following fields to be mass assigned
-    protected $fillable = ['last_name', 'nic', 'user_id', 'phone', 'nationality', 'passport','dob', 'address', 'medical-school', 'license-number' ]; 
+    protected $fillable = ['last_name', 'nic', 'user_id', 'phone', 'nationality', 'passport','dob', 'address', 'medical_school', 'license_number' ]; 
 
     public function user()
     {

@@ -56,7 +56,7 @@ class MemberController extends Controller
             'specializations.*' => 'exists:specializations,id',
             'password' => 'required|string|min:8|max:255|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).*$/',
         ]);
-    
+        
         $user = User::create([
             'name' => $validatedData['FirstName'],
             'email' => $validatedData['email'],
@@ -84,7 +84,7 @@ class MemberController extends Controller
         // Attach the specializations
         $member->specializations()->attach($validatedData['specializations']);
         
-    
+        // dd($request->all());
         // Determine if the registration is by admin
         if ($request->input('registered_by_admin') == 'yes') {
     
