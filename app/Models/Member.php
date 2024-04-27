@@ -22,7 +22,9 @@ class Member extends Model
     // this will call the specialization model and return the specializations of the member
     public function specializations()
     {
-        return $this->belongsToMany(Specialization::class, 'member_specialization');
+        return $this->belongsToMany(Specialization::class, 'member_specialization')
+                    ->withPivot('fee')
+                    ->withTimestamps();
     }
     
     // this will call the weekly availability model and return the weekly availabilities of the member

@@ -32,8 +32,8 @@ class MemberController extends Controller
 
     public function MembersManagementAdd(Request $request)
     {
-        $specializations = \App\Models\Specialization::all(); // Fetch all specializations
-        return view('admin.users.members-add', compact('specializations'));
+        return view('admin.users.members-add');
+        
     }
 
     // Member regisration
@@ -52,8 +52,6 @@ class MemberController extends Controller
             'address' => 'nullable|string|max:255',
             'medical_school' => 'nullable|string|max:255',
             'license_number' => 'nullable|string|max:255',
-            'specializations' => 'required|array',
-            'specializations.*' => 'exists:specializations,id',
             'password' => 'required|string|min:8|max:255|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).*$/',
         ]);
         
@@ -65,7 +63,7 @@ class MemberController extends Controller
     
         $nicOrPassport = $request->input('nationality') === 'Local' ? $validatedData['nic'] : $validatedData['passport'];
     
-        $user->assignRole('member'); // Ensure you have roles set up correctly
+        $user->assignRole('member'); 
     
         $member = new Member([
             'last_name' => $validatedData['LastName'],
@@ -80,9 +78,6 @@ class MemberController extends Controller
             'user_id' => $user->id,
         ]);
         $member->save();
-
-        // Attach the specializations
-        $member->specializations()->attach($validatedData['specializations']);
         
         // dd($request->all());
         // Determine if the registration is by admin
@@ -92,7 +87,44 @@ class MemberController extends Controller
         }
     }
 
-    // view availability weekly
+    // Specializations
+    public function MemberSpecializations()
+    {
+        return view('member.specializations');
+    }
+    // add Specializations
+    public function MemberSpecializationsAdd()
+    {
+        $specializations = \App\Models\Specialization::all(); // Fetch all specializations
+        return view('member.specializations-add', compact('specializations'));
+    }
+
+    // add specializations (post method)
+    public function createSpecialization(Request $request)
+    {
+        $request->validate([
+            'specializations' => 'required|array',
+            'specializations.*.id' => 'required|exists:specializations,id',
+            'specializations.*.fee' => 'required|numeric|min:0',
+        ]);
+
+        $member = auth()->user()->member;
+        if (!$member) {
+            return back()->with('error', 'No member profile found for the user.');
+        }
+
+        foreach ($request->specializations as $specialization) {
+            $member->specializations()->syncWithoutDetaching([
+                $specialization['id'] => ['fee' => $specialization['fee']]
+            ]);
+        }
+
+        return redirect()->route('MemberSpecializations')->with('success', 'Specializations updated successfully.');
+
+        dd($request->all());
+    }
+
+    // Availability
     public function MemberAvailability()
     {
         return view('member.availability');

@@ -11,6 +11,8 @@ class Specialization extends Model
     
     public function members()
     {
-        return $this->belongsToMany(Member::class, 'member_specialization');
+        return $this->belongsToMany(Member::class, 'member_specialization')
+                    ->withPivot('fee')
+                    ->withTimestamps();
     }
 }

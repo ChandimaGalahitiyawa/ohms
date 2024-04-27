@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('member_specialization', function (Blueprint $table) {
             $table->foreignId('member_id')->constrained('members')->onDelete('cascade');
             $table->foreignId('specialization_id')->constrained('specializations')->onDelete('cascade');
+            $table->decimal('fee', 8, 2);
             $table->timestamps(); 
         });
     }

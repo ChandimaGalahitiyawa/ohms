@@ -69,6 +69,12 @@ class PatientController extends Controller
             return redirect()->route('PatientDashboard')->with('first_login', 'true');
         }
     }
+
+    // create appoiments
+    public function AppointmentsCreate()
+    {
+        return view('patient.appointments');
+    }
     
 
 }

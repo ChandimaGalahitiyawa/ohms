@@ -95,7 +95,7 @@
         @enderror
       </div>
 
-      <!-- Address -->
+      <!-- Address Field -->
       <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Address</label>
       <div class="mb-4">
         <input id="address" type="text" name="address"  autocomplete="address" placeholder="Address" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
@@ -121,75 +121,7 @@
             <p class="text-red-500 text-xs italic">{{ $message }}</p>
         @enderror
       </div>
-
-      <!-- Specializations Field -->
-      <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Specializations</label>
-      <div>
-          <div id="specializationsContainer" class="mb-4">
-              <div class="specialization-select mb-2 flex items-center">
-                  <select name="specializations[]" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text:white/80 text-sm leading-5.6 ease-soft appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
-                      <option value="">Select Specialization</option>
-                      @foreach ($specializations as $specialization)
-                          <option value="{{ $specialization->id }}">{{ $specialization->name }}</option>
-                      @endforeach
-                  </select>
-                  <button type="button" class="remove-btn ml-2 text-red-500" onclick="removeSpecialization(this)">X</button>
-              </div>
-          </div>
-          <button type="button" onclick="addSpecialization()" class="inline-block mb-2 ml-1 font-bold text-slate-500 text-xs">Add More</button>
-      </div>
-  
-      <script>
-        function addSpecialization() {
-            var container = document.getElementById('specializationsContainer');
-            var newSelect = document.querySelector('.specialization-select').cloneNode(true);
-            container.appendChild(newSelect);
-        }
-        </script>
         
-        <script>
-          document.addEventListener('DOMContentLoaded', function () {
-              var choices = new Choices('.specialization-selector', {
-                  removeItemButton: true,
-                  searchEnabled: true,
-                  shouldSort: false,
-              });
-        
-              window.addSpecialization = function() {
-                  var container = document.getElementById('specializationsContainer');
-                  var allSelects = container.querySelectorAll('select');
-                  var selectedValues = Array.from(allSelects).map(select => select.value);
-                  var canAdd = selectedValues.every(value => value); // Ensure all selects have values
-        
-                  if (canAdd) {
-                      var newSelect = allSelects[0].parentNode.cloneNode(true);
-                      newSelect.querySelector('select').value = "";
-                      container.appendChild(newSelect);
-                      new Choices(newSelect.querySelector('select'), {
-                          removeItemButton: true,
-                          searchEnabled: true,
-                          shouldSort: false,
-                      });
-                  } else {
-                      alert("Please select a specialization before adding more.");
-                  }
-              };
-        
-              window.removeSpecialization = function(element) {
-                  var container = document.getElementById('specializationsContainer');
-                  if (container.children.length > 1) {
-                      var selectElement = element.parentNode.querySelector('select');
-                      var instance = Choices.instances.get(selectElement);
-                      if (instance) {
-                          instance.destroy();
-                      }
-                      element.parentNode.remove();
-                  } else {
-                      alert("At least one specialization is required.");
-                  }
-              };
-          });
-        </script>
 
       <!-- Password Field -->
       <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Temporary Password</label>
