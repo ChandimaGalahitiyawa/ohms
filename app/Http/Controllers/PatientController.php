@@ -17,6 +17,12 @@ class PatientController extends Controller
         return view('patient.dashboard');
     }
 
+    // patient profile route
+    public function PatientSettings()
+    {
+        return view('patient.settings.profile');
+    }
+
     // patient regisration
     public function createPatient(Request $request)
     {
@@ -63,5 +69,12 @@ class PatientController extends Controller
             return redirect()->route('PatientDashboard')->with('first_login', 'true');
         }
     }
+
+    // create appoiments
+    public function AppointmentsCreate()
+    {
+        return view('patient.appointments');
+    }
     
+
 }

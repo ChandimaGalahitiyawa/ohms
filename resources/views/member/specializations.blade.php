@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('member.layouts.app')
 
 @section('content')
 
@@ -10,11 +10,11 @@
           <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
             <div class="lg:flex">
               <div>
-                <h5 class="mb-0 dark:text-white">Member Managements</h5>
+                <h5 class="mb-0 dark:text-white">Specializations</h5>
               </div>
               <div class="my-auto mt-6 ml-auto lg:mt-0">
                 <div class="my-auto ml-auto">
-                  <a href="{{ route('MembersManagementAdd') }}" class="inline-block px-8 py-2 m-0 text-xs font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer ease-soft-in leading-pro tracking-tight-soft bg-gradient-to-tl from-purple-700 to-pink-500 shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85">+&nbsp; Add Memeber</a>
+                  <a href="{{ route('MemberSpecializationsAdd') }}" class="inline-block px-8 py-2 m-0 text-xs font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer ease-soft-in leading-pro tracking-tight-soft bg-gradient-to-tl from-purple-700 to-pink-500 shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85">+&nbsp; Add Specializations                  </a>
                </div>
               </div>
             </div>
@@ -27,25 +27,18 @@
                   <thead class="thead-light">
                       <tr>
                           <th>Name</th>
-                          <th>Email</th>
-                          <th>Phone</th>
-                          <th>Nationality</th>
-                          <th>NIC/PP</th>
-                          <th>Status</th>
+                          <th>Fee</th>
+                          {{-- <th>Status</th> --}}
                           <th>Action</th>
                       </tr>
                   </thead>
                   <tbody>
-                      @foreach ($members as $members)
                       <tr>
-                          <td class="leading-normal text-sm">{{ $members->user->name }} {{ $members->last_name }}</td>
-                          <td class="leading-normal text-sm">{{ $members->user->email }}</td>
-                          <td class="leading-normal text-sm">{{ $members->phone }}</td>
-                          <td class="leading-normal text-sm">{{ $members->nationality }}</td>
-                          <td class="leading-normal text-sm">{{ $members->nic ?? $members->members }}</td>
-                          <td>
+                          <td class="leading-normal text-sm">lorem</td>
+                          <td class="leading-normal text-sm">lorem</td>
+                          {{-- <td>
                               <span class="py-1.8 px-3 text-xxs rounded-1 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-red-700 bg-red-200">Active</span>
-                          </td>
+                          </td> --}}
                           <td class="leading-normal text-sm">
                               <a href="javascript:;" >
                                   <i class="fas fa-eye text-slate-400 dark:text-white/70"></i>
@@ -58,17 +51,13 @@
                               </a>
                           </td>
                       </tr>
-                      @endforeach
                   </tbody>
                   <tfoot>
                       <tr>
-                          <th>Name</th>
-                          <th>Email</th>
-                          <th>Phone</th>
-                          <th>Nationality</th>
-                          <th>NIC/PP</th>
-                          <th>Status</th>
-                          <th>Action</th>
+                        <th>Name</th>
+                        <th>Fee</th>
+                        {{-- <th>Status</th> --}}
+                        <th>Action</th>
                       </tr>
                   </tfoot>
               </table>

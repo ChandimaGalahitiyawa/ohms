@@ -164,6 +164,8 @@
   font-size: 14px;
   min-height: 40px;
   overflow: hidden;
+  /* customcss */
+  background: #fff;
 }
 
 .is-focused .choices__inner,

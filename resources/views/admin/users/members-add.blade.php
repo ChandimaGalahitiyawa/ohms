@@ -2,8 +2,8 @@
 
 @section('content')
 
-<div class="flex-auto p-6 w-6/12 mx-auto">
-    <form role="form" method="POST" action="{{ route('createPatient') }}">
+<div class="flex-auto p-6 w-6/12 mx-auto ">
+    <form role="form" method="POST" action="{{ route('createMember') }}">
       @csrf  
 
       <div class="flex w-full">
@@ -86,8 +86,42 @@
 
 
 
+      <!-- Birth Day -->
+      <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Birth Day</label>
+      <div class="mb-4">
+        <input id="dob" type="date" name="dob"  autocomplete="dob" placeholder="dob" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
+        @error('dob')
+            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+        @enderror
+      </div>
 
+      <!-- Address Field -->
+      <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Address</label>
+      <div class="mb-4">
+        <input id="address" type="text" name="address"  autocomplete="address" placeholder="Address" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
+        @error('address')
+            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+        @enderror
+      </div>
 
+      {{-- Medical schoolr --}}
+      <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Medical School</label>
+      <div class="mb-4">
+        <input id="medical_school" type="text" name="medical_school"  autocomplete="medical_school" placeholder="Medical schoolr" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
+        @error('medical_school')
+            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+        @enderror
+      </div>
+
+      {{-- License number --}}
+      <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">License number</label>
+      <div class="mb-4">
+        <input id="license_number" type="text" name="license_number"  autocomplete="license_number" placeholder="License number" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
+        @error('license_number')
+            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+        @enderror
+      </div>
+        
 
       <!-- Password Field -->
       <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Temporary Password</label>
@@ -109,7 +143,7 @@
 
       <div class="text-center">
         <input type="hidden" name="registered_by_admin" value="yes">
-        <button type="submit" class="inline-block w-full px-6 py-3 mt-6 mb-0 font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25">Add Patient</button>
+        <button type="submit" class="inline-block w-full px-6 py-3 mt-6 mb-0 font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25">Submit</button>
       </div>
     </form>
   </div>

@@ -15,6 +15,12 @@ if (document.getElementById("choices-language")) {
   const example = new Choices(language);
 }
 
+//custom ones
+if (document.getElementById("choices-member")) {
+  var language = document.getElementById("choices-member");
+  const example = new Choices(language);
+}
+
 if (document.getElementById("choices-skills")) {
   var skills = document.getElementById("choices-skills");
   const example = new Choices(skills, {
