@@ -63,7 +63,7 @@
 
             <li class="w-full">
               <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" 
-              href="#">
+              href="{{ route('MemberAvailability') }}">
                 <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> A </span>
                 <span class="transition-all duration-100 pointer-events-none ease-soft">Availability </span>
               </a>
@@ -73,7 +73,7 @@
         </div>
       </li>
       
-      {{-- Appointment Management --}}
+      {{-- Payment Management --}}
       <li class="mt-0.5 w-full">
         <a collapse_trigger="primary" href="#" class="ease-soft-in-out text-sm py-2.7 active after:ease-soft-in-out after:font-awesome-5-free my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 dark:text-white dark:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-controls="authExamples" role="button" aria-expanded="false">
           <div class="stroke-none shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current p-2.5 text-center text-black">

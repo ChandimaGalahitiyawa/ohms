@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Member;
 use Illuminate\Http\Request;
+use App\Models\Specialization;
+use App\Models\WeeklyAvailability;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Log;
+use App\Models\SpecificAvailability;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 
@@ -87,4 +91,85 @@ class MemberController extends Controller
             return redirect()->route('MembersManagement');
         }
     }
+
+    // view availability weekly
+    public function MemberAvailability()
+    {
+        return view('member.availability');
+    }
+
+    public function MemberAvailabilityAdd()
+    {
+        return view('member.availability-add');
+    }
+
+    // add availability
+    public function createWeeklyAvailability(Request $request)
+    {
+        $request->validate([
+            'days' => 'required|array',
+            'days.*' => 'required|string',
+            'week_start_time' => 'required|array',
+            'week_start_time.*' => 'required|date_format:H:i',
+            'week_end_time' => 'required|array',
+            'week_end_time.*' => 'required|date_format:H:i',
+            'week_slots' => 'required|array',
+            'week_slots.*' => 'required|integer',
+        ]);
+        
+        $user = auth()->user();
+        $member = $user->member;
+        
+
+        if (!$member) {
+            // Handle the error appropriately
+            return back()->with('error', 'No member profile found for the user.');
+        }
+
+        foreach ($request->days as $index => $day) {
+            $member->weeklyAvailabilities()->create([
+                'day' => $day,
+                'start_time' => $request->week_start_time[$index],
+                'end_time' => $request->week_end_time[$index],
+                'slots' => $request->week_slots[$index],
+            ]);
+        }
+
+        //  dd($request->all());
+
+        return redirect()->route('MemberAvailability');
+    }
+
+    // add availability for specific dates
+    public function createSpecificAvailability(Request $request)
+    {
+        $request->validate([
+            'specific_dates' => 'required|array',
+            'specific_dates.*' => 'required|date',
+            'specific_start_times' => 'required|array',
+            'specific_start_times.*' => 'required|date_format:H:i',
+            'specific_end_times' => 'required|array',
+            'specific_end_times.*' => 'required|date_format:H:i',
+            'specific_slots' => 'required|array',
+            'specific_slots.*' => 'required|integer',
+        ]);
+    
+        $member = auth()->user()->member;
+        if (!$member) {
+            return back()->with('error', 'No member profile found for the user.');
+        }
+        
+
+        foreach ($request->specific_dates as $index => $date) {
+            $member->specificAvailabilities()->create([
+                'date' => $date,
+                'start_time' => $request->specific_start_times[$index],
+                'end_time' => $request->specific_end_times[$index],
+                'slots' => $request->specific_slots[$index],
+            ]);
+        }
+        // dd($request->all());
+        return redirect()->route('MemberAvailability');
+    }    
+
 }

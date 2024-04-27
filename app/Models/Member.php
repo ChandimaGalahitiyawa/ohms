@@ -25,9 +25,16 @@ class Member extends Model
         return $this->belongsToMany(Specialization::class, 'member_specialization');
     }
     
-    public function availabilities()
+    // this will call the weekly availability model and return the weekly availabilities of the member
+    public function weeklyAvailabilities()
     {
-        return $this->hasMany(Availability::class);
+        return $this->hasMany(WeeklyAvailability::class);
+    }
+
+    // this will call the specific availability model and return the specific availabilities of the member
+    public function specificAvailabilities()
+    {
+        return $this->hasMany(SpecificAvailability::class);
     }
 
 }

@@ -5,19 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Availability extends Model
+class WeeklyAvailability extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['pattern_type', 'day_of_week', 'day_of_month', 'all_day', 'status'];
+    protected $fillable = ['day', 'start_time', 'end_time', 'slots'];
 
     public function member()
     {
         return $this->belongsTo(Member::class);
-    }
-
-    public function timeSlots()
-    {
-        return $this->hasMany(TimeSlot::class);
     }
 }

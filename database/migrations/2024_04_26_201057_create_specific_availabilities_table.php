@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('time_slots', function (Blueprint $table) {
+        Schema::create('specific_availabilities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('availability_id')->constrained('availabilities')->onDelete('cascade');
+            $table->foreignId('member_id')->constrained()->onDelete('cascade');
+            $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
+            $table->integer('slots');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('time_slots');
+        Schema::dropIfExists('specific_availabilities');
     }
 };

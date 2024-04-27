@@ -77,8 +77,15 @@ Route::prefix('member')->middleware(['auth:sanctum', 'role:member', config('jets
 
     // member profile routes
     Route::get('/settings/profile', 'MemberSettings')->name('MemberSettings');
-    });
 
+    // add avalability routes
+    Route::post('/createWeeklyAvailability', 'createWeeklyAvailability')->name('createWeeklyAvailability');
+    Route::post('/createSpecificAvailability', 'createSpecificAvailability')->name('createSpecificAvailability');
+    Route::get('/availability', 'MemberAvailability')->name('MemberAvailability');   
+    Route::get('/availability-add', 'MemberAvailabilityAdd')->name('MemberAvailabilityAdd');   
+
+    });
+    
 });
 
 // user routes
@@ -88,7 +95,7 @@ Route::prefix('patient')->middleware(['auth:sanctum', 'role:patient', config('je
     Route::controller(PatientController::class)->group(function () {
         Route::get('/dashboard', 'dashboard')->name('PatientDashboard');
 
-    // member profile routes
+    // patient profile routes
     Route::get('/settings/profile', 'PatientSettings')->name('PatientSettings');
 
     });
