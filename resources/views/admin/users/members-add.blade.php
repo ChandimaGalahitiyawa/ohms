@@ -5,7 +5,7 @@
 <div class="flex-auto p-6 w-6/12 mx-auto ">
     <form role="form" method="POST" action="{{ route('createMember') }}">
       @csrf  
-
+      <h3 class="text-xl font-bold mb-4">Add Member</h3>
       <div class="flex w-full">
         <!-- First Name Field -->
         <div class="flex flex-col mr-4 w-full lg:w-6/12">

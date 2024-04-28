@@ -15,4 +15,9 @@ class SpecificAvailability extends Model
     {
         return $this->belongsTo(Member::class);
     }
+
+    public function centres()
+    {
+        return $this->belongsToMany(Centre::class, 'member_availability_centre');
+    }
 }

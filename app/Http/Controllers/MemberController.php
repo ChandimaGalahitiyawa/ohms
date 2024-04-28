@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Centre;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use App\Models\Specialization;
@@ -121,7 +122,7 @@ class MemberController extends Controller
 
         return redirect()->route('MemberSpecializations')->with('success', 'Specializations updated successfully.');
 
-        dd($request->all());
+        // dd($request->all());
     }
 
     // Availability
@@ -132,7 +133,8 @@ class MemberController extends Controller
 
     public function MemberAvailabilityAdd()
     {
-        return view('member.availability-add');
+        $centres = Centre::all(); // Fetch all centres
+        return view('member.availability-add', compact('centres')); 
     }
 
     // add availability
@@ -147,31 +149,36 @@ class MemberController extends Controller
             'week_end_time.*' => 'required|date_format:H:i',
             'week_slots' => 'required|array',
             'week_slots.*' => 'required|integer',
+            'centre_id' => 'required|exists:centres,id',
         ]);
-        
+
         $user = auth()->user();
         $member = $user->member;
         
-
         if (!$member) {
-            // Handle the error appropriately
             return back()->with('error', 'No member profile found for the user.');
         }
-
+        
         foreach ($request->days as $index => $day) {
-            $member->weeklyAvailabilities()->create([
+            $availability = $member->weeklyAvailabilities()->create([
+                'member_id' => $member->id,  // Explicitly set the member_id
                 'day' => $day,
                 'start_time' => $request->week_start_time[$index],
                 'end_time' => $request->week_end_time[$index],
                 'slots' => $request->week_slots[$index],
             ]);
+            // Associate availability with the centre
+            $availability->centres()->attach($request->centre_id, [
+                'member_id' => $member->id,
+                'created_at' => now(),  // Manually setting the timestamp
+                'updated_at' => now()   // Manually setting the timestamp
+            ]);
+            
         }
-
-        //  dd($request->all());
 
         return redirect()->route('MemberAvailability');
     }
-
+    
     // add availability for specific dates
     public function createSpecificAvailability(Request $request)
     {
@@ -184,24 +191,33 @@ class MemberController extends Controller
             'specific_end_times.*' => 'required|date_format:H:i',
             'specific_slots' => 'required|array',
             'specific_slots.*' => 'required|integer',
+            'centre_id' => 'required|exists:centres,id', // Validate centre_id
         ]);
-    
+
         $member = auth()->user()->member;
         if (!$member) {
             return back()->with('error', 'No member profile found for the user.');
         }
-        
-
+    
         foreach ($request->specific_dates as $index => $date) {
-            $member->specificAvailabilities()->create([
+            $specificAvailability = $member->specificAvailabilities()->create([
                 'date' => $date,
                 'start_time' => $request->specific_start_times[$index],
                 'end_time' => $request->specific_end_times[$index],
                 'slots' => $request->specific_slots[$index],
             ]);
-        }
-        // dd($request->all());
-        return redirect()->route('MemberAvailability');
-    }    
 
+            // Associate specific availability with the centre
+            $specificAvailability->centres()->attach($request->centre_id, [
+                'member_id' => $member->id,
+                'created_at' => now(),  // Manually setting the timestamp
+                'updated_at' => now()   // Manually setting the timestamp
+            ]);
+        }
+    
+        return redirect()->route('MemberAvailability');
+    }
+    
 }
+
+// dd($request->all()); // This will stop execution after the first loop iteration!

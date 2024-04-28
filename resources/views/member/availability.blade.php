@@ -9,11 +9,11 @@
           <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
             <div class="lg:flex">
               <div>
-                <h5 class="mb-0 dark:text-white">Availability</h5>
+                <h5 class="mb-0 dark:text-white">Centre Managements</h5>
               </div>
               <div class="my-auto mt-6 ml-auto lg:mt-0">
                 <div class="my-auto ml-auto">
-                  <a href="{{ route('MemberAvailabilityAdd') }}" class="inline-block px-8 py-2 m-0 text-xs font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer ease-soft-in leading-pro tracking-tight-soft bg-gradient-to-tl from-purple-700 to-pink-500 shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85">+&nbsp; Add Availability</a>
+                  <a href="{{ route('CentresManagementAdd') }}" class="inline-block px-8 py-2 m-0 text-xs font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer ease-soft-in leading-pro tracking-tight-soft bg-gradient-to-tl from-purple-700 to-pink-500 shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85">+&nbsp; Add Centre</a>
                </div>
               </div>
             </div>
@@ -28,9 +28,9 @@
                           <th>Name</th>
                           <th>Email</th>
                           <th>Phone</th>
-                          <th>Nationality</th>
-                          <th>NIC/PP</th>
-                          <th>Status</th>
+                          <th>Accept Currency</th>
+                          <th>Fee Type</th>
+                          <th>Fee</th>
                           <th>Action</th>
                       </tr>
                   </thead>
@@ -41,13 +41,8 @@
                           <td class="leading-normal text-sm">...</td>
                           <td class="leading-normal text-sm">...</td>
                           <td class="leading-normal text-sm">...</td>
-                          <td>
-                              <span class="py-1.8 px-3 text-xxs rounded-1 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-red-700 bg-red-200">Active</span>
-                          </td>
+                          <td class="leading-normal text-sm">...</td>
                           <td class="leading-normal text-sm">
-                              <a href="javascript:;" >
-                                  <i class="fas fa-eye text-slate-400 dark:text-white/70"></i>
-                              </a>
                               <a href="javascript:;" class="mx-4" >
                                   <i class="fas fa-user-edit text-slate-400 dark:text-white/70"></i>
                               </a>
@@ -59,13 +54,13 @@
                   </tbody>
                   <tfoot>
                       <tr>
-                          <th>Name</th>
-                          <th>Email</th>
-                          <th>Phone</th>
-                          <th>Nationality</th>
-                          <th>NIC/PP</th>
-                          <th>Status</th>
-                          <th>Action</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Accept Currency</th>
+                        <th>Fee Type</th>
+                        <th>Fee</th>
+                        <th>Action</th>
                       </tr>
                   </tfoot>
               </table>

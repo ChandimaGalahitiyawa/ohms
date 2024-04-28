@@ -84,6 +84,17 @@
                 };
             });
             </script>
+    <br>
+        <!-- Centre Name Select Dropdown -->
+        <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Selec Centre</label>
+        <div class="mb-4">
+            <select name="centre_id" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline border border-solid border-gray-300 rounded-lg">
+                <option value="">Select a Centre</option>
+                @foreach ($centres as $centre)
+                    <option value="{{ $centre->id }}">{{ $centre->centre_name }}</option>
+                @endforeach
+            </select>
+        </div>
 
         <!-- Submit Button -->
         <div class="text-center">
@@ -167,8 +178,17 @@
                 };
             });
             </script>
-            
-
+            <br>
+        <!-- Centre Name Select Dropdown -->
+        <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Select Centre</label>
+        <div class="mb-4">
+            <select name="centre_id" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline border border-solid border-gray-300 rounded-lg">
+                <option value="">Select a Centre</option>
+                @foreach ($centres as $centre)
+                    <option value="{{ $centre->id }}">{{ $centre->centre_name }}</option>
+                @endforeach
+            </select>
+        </div>
 
         <!-- Submit Button -->
         <div class="text-center">

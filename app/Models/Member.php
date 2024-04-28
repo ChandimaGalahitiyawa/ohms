@@ -27,6 +27,14 @@ class Member extends Model
                     ->withTimestamps();
     }
     
+    // this will call the centre model and return the centres of the member
+    public function centres()
+    {
+        return $this->belongsToMany(Centre::class, 'member_availability_centre')
+                    ->withPivot('weekly_availability_id', 'specific_availability_id')
+                    ->withTimestamps();
+    }    
+
     // this will call the weekly availability model and return the weekly availabilities of the member
     public function weeklyAvailabilities()
     {

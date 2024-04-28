@@ -14,6 +14,18 @@ class Centre extends Model
         'centre_contact_number',
         'centre_email_address',
         'centre_city',
-        'country'
+        'address',
+        'centre_fee_type',
+        'centre_accept_currency',
+        'centre_fee',
+        'refund_protection_fee'
     ];
+
+    // this will call the member model and return the members of the centre
+    public function members()
+    {
+        return $this->belongsToMany(Member::class, 'member_availability_centre')
+                    ->withPivot('weekly_availability_id', 'specific_availability_id')
+                    ->withTimestamps();
+    }
 }
