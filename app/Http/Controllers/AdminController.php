@@ -2,15 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Patient;
 use App\Models\Member;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Http\Controllers\PatientController;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\PatientController;
 
 class AdminController extends Controller
 {
+
+    //auto logout
+    public function autoLogout(Request $request)
+    {
+        Auth::logout();  // Log out the user
+
+        $request->session()->invalidate();  // Invalidate the session
+        $request->session()->regenerateToken();  // Regenerate the CSRF token
+
+        return redirect('login');  // Redirect to login page with a message
+    }
+
     // Admin Settings route
     public function AdminSettings()
     {
