@@ -18,7 +18,7 @@ use App\Models\Member;
 |
 */
 
-// public routes
+// these are non-role routes
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -33,22 +33,14 @@ Route::middleware([
     })->name('dashboard');
 });
 
-// auto logout
+// auto logout if user goes to /dashboards
 Route::get('/auto-logout', [App\Http\Controllers\AdminController::class, 'autoLogout'])->name('auto.logout');
 
 // patient register routes
 Route::controller(PatientController::class)->group(function () {
     Route::post('/createPatient', 'createPatient')->name('createPatient');
 });
-
-
-// // patient register routes
-// Route::controller(MemberController::class)->group(function () {
-//     Route::post('/createMember', 'createMember')->name('createMember');
-//     Route::get('/users/members-add', 'MembersManagementAdd')->name('MembersManagementAdd');
-// });
-
-
+// these are role based routes
 // admin routes
 Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstream.auth_session'), 'verified'])->group(function () {
 
