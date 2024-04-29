@@ -36,7 +36,6 @@ Route::middleware([
 // auto logout
 Route::get('/auto-logout', [App\Http\Controllers\AdminController::class, 'autoLogout'])->name('auto.logout');
 
-
 // patient register routes
 Route::controller(PatientController::class)->group(function () {
     Route::post('/createPatient', 'createPatient')->name('createPatient');
