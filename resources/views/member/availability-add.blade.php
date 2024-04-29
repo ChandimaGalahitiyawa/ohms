@@ -75,16 +75,16 @@
                                     <div class="w-full lg:w-3/12">
                                         <div class="flex items-center">
                                             <input type="number" name="week_slots[]" placeholder="Slots" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline border border-solid border-gray-300 rounded-lg">
-                                            <!-- Remove button -->
-                                            <button type="button" class="remove-day ml-2 text-red-500" onclick="removeDayTimeSlot(this)">X</button>
+                                            {{-- <!-- Remove button -->
+                                            <button type="button" class="remove-day ml-2 text-red-500" onclick="removeDayTimeSlot(this)">X</button> --}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button type="button" id="add-more-days" class="inline-block mb-2 ml-1 font-bold text-slate-500 text-xs">Add More</button>
+                        {{-- <button type="button" id="add-more-days" class="inline-block mb-2 ml-1 font-bold text-slate-500 text-xs">Add More</button> --}}
                         
-                        <script>
+                        {{-- <script>
                             document.addEventListener('DOMContentLoaded', function () {
                                 // Function to add more date/time slots
                                 document.getElementById('add-more-dates').addEventListener('click', function() {
@@ -112,7 +112,7 @@
                                     }
                                 };
                             });
-                            </script>
+                            </script> --}}
                 
                         <!-- Submit Button -->
                         <div class="text-center">
@@ -178,8 +178,8 @@
                                     <div class="w-full lg:w-3/12">
                                         <div class="flex items-center">
                                             <input type="number" name="specific_slots[]" placeholder="Slots" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline border border-solid border-gray-300 rounded-lg">
-                                            <!-- Remove button -->
-                                            <button type="button" class="remove-day ml-2 text-red-500" onclick="removeDateTimeSlot(this)">X</button>
+                                            {{-- <!-- Remove button -->
+                                            <button type="button" class="remove-day ml-2 text-red-500" onclick="removeDateTimeSlot(this)">X</button> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -187,7 +187,7 @@
                         </div>
                         <button type="button" id="add-more-dates" class="inline-block mb-2 ml-1 font-bold text-slate-500 text-xs">Add More</button>
                         
-                        <script>
+                        {{-- <script>
                             document.addEventListener('DOMContentLoaded', function () {
                                 // Function to add more day/time slots
                                 document.getElementById('add-more-days').addEventListener('click', function() {
@@ -215,7 +215,7 @@
                                     }
                                 };
                             });
-                            </script>
+                            </script> --}}
                         <!-- Submit Button -->
                         <div class="text-center">
                             <button type="submit" class="inline-block w-full px-6 py-3 mt-2 mb-0 font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25">Set Availability</button>

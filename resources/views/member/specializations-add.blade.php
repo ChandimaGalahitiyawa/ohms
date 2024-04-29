@@ -23,7 +23,7 @@
             <div class="specializations">
                 <div class="flex flex-wrap w-full items-center mb-4">
                     <div class="w-full lg:w-8/12 pr-2">
-                        <select name="specializations[0][id]" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text:white/80 text-sm leading-5.6 ease-soft appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
+                        <select choice id="choices-specialization" name="specializations[0][id]"  class="block w-full px-3 py-2 focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text:white/80 text-sm leading-5.6 ease-soft appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
                             <option value="">Select Specialization</option>
                             @foreach ($specializations as $specialization)
                                 <option value="{{ $specialization->id }}">{{ $specialization->name }}</option>
@@ -33,17 +33,21 @@
                     <div class="w-full lg:w-4/12">
                         <div class="flex items-center">
                             <input type="number" step="any" name="specializations[0][fee]" placeholder="Fee in LKR" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline border border-solid border-gray-300 rounded-lg">
-                            <!-- Remove button -->
-                            <button type="button" class="remove-day ml-2 text-red-500" onclick="removeSelection(this)">X</button>
+                            {{-- <!-- Remove button -->
+                            <button type="button" class="remove-day ml-2 text-red-500" onclick="removeSelection(this)">X</button> --}}
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="w-full max-w-full flex-0 ">
+                <label class="ml-1 font-bold text-xs text-slate-700 dark:text-white/80" for="Description">Description<small> (optional)</small></label>
+                <textarea rows="4" cols="50 step="any" name="specializations[0][description]" placeholder="Write anythink like insturctions before coming to meet like" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline border border-solid border-gray-300 rounded-lg"></textarea>
+            </div>
         </div>
-        <button type="button" id="more-specializations" class="inline-block mb-2 ml-1 font-bold text-slate-500 text-xs">Add More</button>
+        {{-- <button type="button" id="more-specializations" class="inline-block mb-2 ml-1 font-bold text-slate-500 text-xs">Add More</button> --}}
         
         {{-- custom javascript --}}
-        <script>
+        {{-- <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const container = document.getElementById('specializations-container');
                 
@@ -76,7 +80,7 @@
                     }
                 };
             });
-            </script>
+            </script> --}}
             
 
         <!-- Submit Button -->

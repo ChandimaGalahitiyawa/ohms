@@ -102,18 +102,30 @@ class PatientController extends Controller
     
         // Redirect to search results view with members data
         return view('patient.search', compact('members'));
-    }
+        }
 
-    // Appointments route
-    public function ChannelDoctor()
-    {
-        return view('patient.channel');
-    }
+        // patient appointments routes
+        public function PatientAppointments()
+        {
+            return view('patient.appointments');
+        }
 
-    // patient profile route
-    public function PatientSettings()
-    {
-        return view('patient.settings.profile');
-    }
+        // Patient data route
+        public function PatientPayments()
+        {
+            return view('patient.payments');
+        }
+
+        // Patient data route
+        public function PatientData()
+        {
+            return view('patient.data');
+        }
+
+        // patient profile route
+        public function PatientSettings()
+        {
+            return view('patient.settings');
+        }
 
 }

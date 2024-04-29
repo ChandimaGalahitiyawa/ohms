@@ -63,4 +63,12 @@
     </div>
   </div>
 </div>
+<script>
+  document.getElementById('search_by').addEventListener('change', (event) => {
+    const searchOptions = ['search_by_doctor', 'search_by_centre', 'search_by_specialization'];
+    searchOptions.forEach(option => {
+        document.getElementsByClassName(option)[0].style.display = option === event.target.value ? 'block' : 'none';
+    });
+});
+</script>
 @endsection

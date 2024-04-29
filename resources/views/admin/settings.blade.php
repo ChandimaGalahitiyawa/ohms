@@ -29,11 +29,6 @@
 
         <x-section-border />
 
-        <!-- Delete Account -->
-        @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
-            @livewire('profile.delete-user-form')
-        @endif
-
     </div>
 </x-app-layout>
 

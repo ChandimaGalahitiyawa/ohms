@@ -1,4 +1,4 @@
-@extends('patient.layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 <div class="w-full p-6 mx-auto">
@@ -470,4 +470,5 @@
     </div>
 
   </div>
+
 @endsection

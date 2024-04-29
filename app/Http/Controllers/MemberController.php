@@ -26,7 +26,7 @@ class MemberController extends Controller
     // Member profile route
     public function MemberSettings()
     {
-        return view('member.settings.profile');
+        return view('member.settings');
     }
 
     // Member regisration

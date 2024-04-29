@@ -27,7 +27,7 @@ class AdminController extends Controller
     // Admin Settings route
     public function AdminSettings()
     {
-        return view('admin.settings.profile');
+        return view('admin.settings');
     }
 
     // Admin dashboard route
@@ -44,7 +44,7 @@ class AdminController extends Controller
         $members = Member::with('user')->orderBy('created_at', 'desc')->get();
         
         // Pass the members to the view using compact
-        return view('admin.users.members', compact('members'));
+        return view('admin.members', compact('members'));
     }
 
     // Patients Management
@@ -55,7 +55,7 @@ class AdminController extends Controller
         $patients = Patient::with('user')->orderBy('created_at', 'desc')->get();
         
         // Pass the patients to the view using compact
-        return view('admin.users.patients', compact('patients'));
+        return view('admin.patients', compact('patients'));
     }    
 
     //2. Pateint Add
@@ -73,7 +73,13 @@ class AdminController extends Controller
             return $this->patientController->createPatient($request);
         }
 
-        return view('admin.users.patients-add');
+        return view('admin.patients-add');
+    }
+
+     // Patient data route
+    public function AdminPayments()
+    {
+        return view('admin.payments');
     }
 
 }

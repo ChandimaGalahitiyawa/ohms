@@ -50,20 +50,23 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstr
         Route::get('/dashboard', 'dashboard')->name('AdminDashboard');
 
         // Settins routes
-        Route::get('/settings/profile', 'AdminSettings')->name('AdminSettings');
+        Route::get('/settings', 'AdminSettings')->name('AdminSettings');
 
         // Member Management routes
-        Route::get('/users/members', 'MembersManagement')->name('MembersManagement');
+        Route::get('/members', 'MembersManagement')->name('MembersManagement');
         
         // Patient Management routes
-        Route::get('/users/patients', 'PatientsManagement')->name('PatientsManagement');
-        Route::get('/users/patients-add', 'PatientsManagementAdd')->name('PatientsManagementAdd');
+        Route::get('/patients', 'PatientsManagement')->name('PatientsManagement');
+        Route::get('/patients-add', 'PatientsManagementAdd')->name('PatientsManagementAdd');
+
+        // admin payments routes
+        Route::get('/payments', 'AdminPayments')->name('AdminPayments');
     });
 
     // Member Registration routes
     Route::controller(MemberController::class)->group(function () {
         Route::post('/createMember', 'createMember')->name('createMember');
-        Route::get('/users/members-add', 'MembersManagementAdd')->name('MembersManagementAdd');
+        Route::get('/members-add', 'MembersManagementAdd')->name('MembersManagementAdd');
     });
 
     // Centre Management routes
@@ -75,6 +78,9 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstr
         Route::get('/centres/{id}/edit', [CentreController::class, 'edit'])->name('edit_centre');
         Route::delete('/centres/{id}', [CentreController::class, 'delete'])->name('delete_centre');
     });
+
+
+
 });
 
 
@@ -86,7 +92,7 @@ Route::prefix('member')->middleware(['auth:sanctum', 'role:member', config('jets
         Route::get('/dashboard', 'dashboard')->name('MemberDashboard');
 
     // member profile routes
-    Route::get('/settings/profile', 'MemberSettings')->name('MemberSettings');
+    Route::get('/settings', 'MemberSettings')->name('MemberSettings');
 
     // add avalability routes
     Route::post('/createWeeklyAvailability', 'createWeeklyAvailability')->name('createWeeklyAvailability');
@@ -113,8 +119,17 @@ Route::prefix('patient')->middleware(['auth:sanctum', 'role:patient', config('je
         Route::post('/search', [PatientController::class, 'MemberSearch'])->name('member.search');
         Route::get('/channel ', 'ChannelDoctor')->name('ChannelDoctor');
 
+    // patient appointments routes
+    Route::get('/appointments', 'PatientAppointments')->name('PatientAppointments');
+
+    // patient payments routes
+    Route::get('/payments', 'PatientPayments')->name('PatientPayments');
+
+    // patient data routes
+    Route::get('/data', 'PatientData')->name('PatientData');
+
     // patient profile routes
-    Route::get('/settings/profile', 'PatientSettings')->name('PatientSettings');
+    Route::get('/settings', 'PatientSettings')->name('PatientSettings');
 
     });
 
