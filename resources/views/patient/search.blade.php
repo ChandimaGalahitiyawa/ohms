@@ -36,10 +36,7 @@
             <div class="w-full max-w-full px-3 mx-auto mt-4 sm:my-auto sm:mr-0 md:w-1/2 md:flex-none lg:w-4/12">
   
               <div class="right-0 align-middle">
-                <ul nav-pills role="list">
-                    <li class="z-30 flex-auto text-center text-xs"> 
-                      {avalable number sessions} Sessions available
-                    </li>
+                <ul class="relative flex flex-wrap p-1 list-none bg-transparent rounded-xl" nav-pills role="list">
                   <li class="z-30 flex-auto text-center">
                     <a nav-link active href="javascript:;" role="tab" aria-selected="true" class="inline-block w-full px-6 py-3 mt-2 pt-10 font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25">
                       Channel
@@ -55,4 +52,12 @@
     </div>
   </div>
 </div>
+<script>
+  document.getElementById('search_by').addEventListener('change', (event) => {
+    const searchOptions = ['search_by_doctor', 'search_by_centre', 'search_by_specialization'];
+    searchOptions.forEach(option => {
+        document.getElementsByClassName(option)[0].style.display = option === event.target.value ? 'block' : 'none';
+    });
+});
+</script>
 @endsection
