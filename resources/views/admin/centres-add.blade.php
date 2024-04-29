@@ -1,11 +1,11 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<div class="flex-auto p-6 w-6/12 mx-auto">
+<div class=" p-6 w-6/12 mx-auto rounded-2xl overflow-hidden break-words border-0 shadow-blur dark:shadow-soft-dark-xl dark:bg-gray-950 rounded-2xl bg-white/80 bg-clip-border backdrop-blur-2xl backdrop-saturate-200 ">
     <form role="form" method="POST" action="{{ route('createCentre') }}">
       @csrf  
       <h3 class="text-xl font-bold mb-4">Add Centre</h3>    
-
+      <p class="text font-normal">Include all details to establish a successful center.</p>
       <!-- Centre Name Field -->
       <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Centre Name</label>
       <div class="mb-4">
@@ -57,7 +57,7 @@
         <div class="w-full lg:w-6/12 pr-2">
             <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Centre Fee Type</label>
             <select name="centre_fee_type" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text:white/80 text-sm leading-5.6 ease-soft appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
-                <option value="">Fee Type</option>
+                <option value="" disabled selected>Fee Type</option>
                 <option value="flat_rate">Flat Rate</option>
                 <option value="percentage">Percentage %</option>
             </select>
@@ -66,7 +66,7 @@
             <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Centre Accept Currency</label>
             <div class="flex items-center">
                 <select name="centre_accept_currency" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text:white/80 text-sm leading-5.6 ease-soft appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
-                    <option value="">Select Accept Currency</option>
+                    <option value='' disabled selected>Select Accept Currency</option>
                     <option value="LKR">LKR</option>
                     <option value="USD">USD</option>
                 </select>
@@ -100,4 +100,5 @@
     </form>
   </div>
 </div>
+<br><br>
 @endsection

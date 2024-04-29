@@ -3,25 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Centre;
+use App\Models\Member;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use App\Models\Specialization;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Http\Response;
 
 class PatientController extends Controller
 {
-    // patient dashboard route
-    public function dashboard()
-    {
-        return view('patient.dashboard');
-    }
-
-    // patient profile route
-    public function PatientSettings()
-    {
-        return view('patient.settings.profile');
-    }
 
     // patient regisration
     public function createPatient(Request $request)
@@ -70,11 +63,57 @@ class PatientController extends Controller
         }
     }
 
-    // create appoiments
+    // Dashboard route
+    public function PatientDashboard(Request $request)
+    {
+        $members = Member::with('user')->orderBy('created_at', 'desc')->get();
+        $centres = Centre::all();
+        $specializations = Specialization::whereHas('members')->get();
+        $availableMembers = collect();
+
+        return view('patient.dashboard', [
+            'members' => $members,
+            'centres' => $centres,
+            'specializations' => $specializations,
+            'availableMembers' => $availableMembers
+        ]);
+    }
+
+    // Search route
+    public function MemberSearch(Request $request)
+    {
+        $query = Member::query();
+    
+        // Apply filters based on the request
+        if ($request->filled('search_by_doctor')) {
+            $query->where('id', $request->search_by_doctor);
+        } elseif ($request->filled('search_by_centre')) {
+            $query->whereHas('centres', function($q) use ($request) {
+                $q->where('id', $request->search_by_centre);
+            });
+        } elseif ($request->filled('search_by_specialization')) {
+            $query->whereHas('specializations', function($q) use ($request) {
+                $q->where('id', $request->search_by_specialization);
+            });
+        }
+    
+        // Fetch results
+        $members = $query->with(['user', 'centres', 'specializations'])->get();
+    
+        // Redirect to search results view with members data
+        return view('patient.search', compact('members'));
+    }
+
+    // Appointments route
     public function AppointmentsCreate()
     {
         return view('patient.appointments');
     }
-    
+
+    // patient profile route
+    public function PatientSettings()
+    {
+        return view('patient.settings.profile');
+    }
 
 }

@@ -35,6 +35,7 @@ Route::controller(PatientController::class)->group(function () {
     Route::post('/createPatient', 'createPatient')->name('createPatient');
 });
 
+
 // // patient register routes
 // Route::controller(MemberController::class)->group(function () {
 //     Route::post('/createMember', 'createMember')->name('createMember');
@@ -73,7 +74,6 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstr
         Route::get('/centres', 'CentresManagement')->name('CentresManagement');
         Route::get('/centre-add', 'CentresManagementAdd')->name('CentresManagementAdd');
         Route::put('/centres/{id}', [CentreController::class, 'update'])->name('update_centre');
-
         Route::get('/centres/{id}/edit', [CentreController::class, 'edit'])->name('edit_centre');
         Route::delete('/centres/{id}', [CentreController::class, 'delete'])->name('delete_centre');
     });
@@ -108,9 +108,11 @@ Route::prefix('member')->middleware(['auth:sanctum', 'role:member', config('jets
 // user routes
 Route::prefix('patient')->middleware(['auth:sanctum', 'role:patient', config('jetstream.auth_session'), 'verified',])->group(function () {
 
-    // user dashboard routes
+    // user dashboard routes (avaliablity check)
     Route::controller(PatientController::class)->group(function () {
-        Route::get('/dashboard', 'dashboard')->name('PatientDashboard');
+        Route::get('/dashboard', 'Patientdashboard')->name('PatientDashboard');
+        Route::get('/search', 'MemberSearch')->name('MemberSearch');
+        Route::post('/search', [PatientController::class, 'MemberSearch'])->name('member.search');
 
     // patient profile routes
     Route::get('/settings/profile', 'PatientSettings')->name('PatientSettings');
@@ -118,6 +120,7 @@ Route::prefix('patient')->middleware(['auth:sanctum', 'role:patient', config('je
     // appointment routes
     Route::post('/createAppointments', 'createAppointments')->name('createAppointments');
     Route::get('/appointments', 'AppointmentsCreate')->name('AppointmentsCreate');   
+
     });
 
 });
