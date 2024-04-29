@@ -111,13 +111,10 @@ Route::prefix('patient')->middleware(['auth:sanctum', 'role:patient', config('je
         Route::get('/dashboard', 'Patientdashboard')->name('PatientDashboard');
         Route::get('/search', 'MemberSearch')->name('MemberSearch');
         Route::post('/search', [PatientController::class, 'MemberSearch'])->name('member.search');
+        Route::get('/channel ', 'ChannelDoctor')->name('ChannelDoctor');
 
     // patient profile routes
     Route::get('/settings/profile', 'PatientSettings')->name('PatientSettings');
-
-    // appointment routes
-    Route::post('/createAppointments', 'createAppointments')->name('createAppointments');
-    Route::get('/appointments', 'AppointmentsCreate')->name('AppointmentsCreate');   
 
     });
 

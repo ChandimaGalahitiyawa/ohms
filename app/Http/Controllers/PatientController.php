@@ -105,9 +105,9 @@ class PatientController extends Controller
     }
 
     // Appointments route
-    public function AppointmentsCreate()
+    public function ChannelDoctor()
     {
-        return view('patient.appointments');
+        return view('patient.channel');
     }
 
     // patient profile route

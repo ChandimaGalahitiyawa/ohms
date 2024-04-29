@@ -2,7 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Centre;
 use App\Models\Specialization;
+use Illuminate\Support\Carbon;
+use App\Models\WeeklyAvailability;
+use App\Models\SpecificAvailability;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -45,6 +49,17 @@ class Member extends Model
     public function specificAvailabilities()
     {
         return $this->hasMany(SpecificAvailability::class);
+    }
+
+    // Member.php model
+    public function isAvailableOn(Carbon $date)
+    {
+        // Use your existing logic with specific and weekly availabilities here
+    }
+
+    public function nextAvailableDateAfter(Carbon $date)
+    {
+        // Implement more refined logic to find the earliest next available date
     }
 
 }
