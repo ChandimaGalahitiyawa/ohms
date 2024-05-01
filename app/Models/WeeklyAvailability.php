@@ -2,23 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class WeeklyAvailability extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['day', 'start_time', 'end_time', 'slots'];
+    protected $fillable = ['day','center_id', 'start_time', 'end_time', 'slots'];
 
-    public function member()
+    public function member(): BelongsTo
     {
         return $this->belongsTo(Member::class);
     }
 
-    public function centres()
+    public function centre(): BelongsTo
     {
-        return $this->belongsToMany(Centre::class, 'member_availability_centre');
+        return $this->belongsTo(Centre::class);
     }
     
 }

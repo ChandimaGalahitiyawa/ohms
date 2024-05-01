@@ -9,6 +9,7 @@ use App\Models\WeeklyAvailability;
 use App\Models\SpecificAvailability;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Member extends Model
@@ -30,7 +31,8 @@ class Member extends Model
                     ->withPivot('fee')
                     ->withTimestamps();
     }
-    
+
+
     // this will call the centre model and return the centres of the member
     public function centres()
     {
@@ -39,13 +41,11 @@ class Member extends Model
                     ->withTimestamps();
     }    
 
-    // this will call the weekly availability model and return the weekly availabilities of the member
-    public function weeklyAvailabilities()
+    public function weeklyAvailabilities(): HasMany
     {
         return $this->hasMany(WeeklyAvailability::class);
     }
 
-    // this will call the specific availability model and return the specific availabilities of the member
     public function specificAvailabilities()
     {
         return $this->hasMany(SpecificAvailability::class);

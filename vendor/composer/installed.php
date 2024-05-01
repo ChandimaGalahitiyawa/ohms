@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'b4c88ed32c9bbfd2ac40137ba3c7d50a74832e3b',
+        'reference' => '71ec1c75166f5ecc8071d0ed6e673d81a4ab1649',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -418,7 +418,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'b4c88ed32c9bbfd2ac40137ba3c7d50a74832e3b',
+            'reference' => '71ec1c75166f5ecc8071d0ed6e673d81a4ab1649',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -829,8 +829,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '3.0.0',
+                0 => '3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(
@@ -1067,6 +1067,15 @@
             'reference' => '17607924aa0aa89bc0153c2ce45ed7c55083367b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../spatie/laravel-permission',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'stripe/stripe-php' => array(
+            'pretty_version' => 'v14.4.0',
+            'version' => '14.4.0.0',
+            'reference' => '044f9dd190967b8fb7e55fd0ea25f11c625c00a4',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../stripe/stripe-php',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('weekly_availabilities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('member_id')->constrained()->onDelete('cascade');
+            $table->foreignId('center_id')->constrained('centres')->onDelete('cascade');
             $table->string('day');
             $table->time('start_time');
             $table->time('end_time');

@@ -65,4 +65,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Member::class); // <--- Important relationship
     }
+
+    public function patient()
+    {
+        return $this->hasOne(Patient::class); // <--- Important relationship
+    }
 }

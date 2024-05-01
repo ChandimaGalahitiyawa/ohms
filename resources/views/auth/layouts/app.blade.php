@@ -11,6 +11,8 @@
     <main class="mt-0 transition-all duration-200 ease-soft-in-out">
       @yield('content')
     </main>
+
+@include('auth.includes.footer')
   </body>
 
 @include('auth.includes.footerlinks')

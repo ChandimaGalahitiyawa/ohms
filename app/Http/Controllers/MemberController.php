@@ -26,7 +26,7 @@ class MemberController extends Controller
     // Member profile route
     public function MemberSettings()
     {
-        return view('member.settings');
+        return view('member.settings.profile');
     }
 
     // Member regisration
@@ -154,6 +154,8 @@ class MemberController extends Controller
 
         $user = auth()->user();
         $member = $user->member;
+
+        $center = Centre::findOrFail($request->centre_id); 
         
         if (!$member) {
             return back()->with('error', 'No member profile found for the user.');
@@ -161,19 +163,13 @@ class MemberController extends Controller
         
         foreach ($request->days as $index => $day) {
             $availability = $member->weeklyAvailabilities()->create([
-                'member_id' => $member->id,  // Explicitly set the member_id
+                'member_id' => $member->id,
+                'center_id' => $request->centre_id, // Explicitly set the member_id
                 'day' => $day,
                 'start_time' => $request->week_start_time[$index],
                 'end_time' => $request->week_end_time[$index],
                 'slots' => $request->week_slots[$index],
             ]);
-            // Associate availability with the centre
-            $availability->centres()->attach($request->centre_id, [
-                'member_id' => $member->id,
-                'created_at' => now(),  // Manually setting the timestamp
-                'updated_at' => now()   // Manually setting the timestamp
-            ]);
-            
         }
 
         return redirect()->route('MemberAvailability');

@@ -98,4 +98,5 @@
   </body>
   <!-- Footer links -->
   @include('patient.includes.footerlinks')
+  @stack('scripts')
 </html>
