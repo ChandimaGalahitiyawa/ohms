@@ -9,6 +9,8 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PatientController;
+use App\Models\User;
+
 
 class AdminController extends Controller
 {
@@ -24,28 +26,11 @@ class AdminController extends Controller
         return redirect('login');  // Redirect to login page with a message
     }
 
-    // Admin Settings route
-    public function AdminSettings()
-    {
-        return view('admin.settings');
-    }
-
     // Admin dashboard route
     public function dashboard()
     {
         return view('admin.dashboard');
-    }
-
-    // Admin Member Management
-    //1. Members List
-    public function MembersManagement()
-    {
-        // Fetch all Members with associated user details, ordered by most recent
-        $members = Member::with('user')->orderBy('created_at', 'desc')->get();
-        
-        // Pass the members to the view using compact
-        return view('admin.users.members', compact('members'));
-    }
+    } 
 
     // Patients Management
     //1. Pateint List
@@ -56,9 +41,10 @@ class AdminController extends Controller
         
         // Pass the patients to the view using compact
         return view('admin.users.patients', compact('patients'));
-    }    
+    }   
 
-    //2. Pateint Add
+
+     //2. Pateint Add
     protected $patientController;
 
     public function __construct(PatientController $patientController)
@@ -76,10 +62,54 @@ class AdminController extends Controller
         return view('admin.users.patients-add');
     }
 
-     // Patient data route
-     public function AdminPayments()
-     {
-         return view('admin.payments');
-     }
+    // Patient data route
+    public function AdminPayments()
+    {
+        return view('admin.payments');
+    }
+
+    // Admin Member Management
+    //1. Members List
+    public function MembersManagement()
+    {
+        // Fetch all Members with associated user details, ordered by most recent
+        $members = Member::with('user')->orderBy('created_at', 'desc')->get();
+        // Pass the members to the view using compact
+        return view('admin.users.members', compact('members'));
+    }
+
+    // Edit member edit page
+    public function edit($id)
+    {
+        $member = Member::with('user')->findOrFail($id);
+        return view('admin.users.members-edit', compact('member'));
+    }    
+
+    public function deleteMember($id)
+    {
+        $members = Member::findOrFail($id);
+        $members->delete();
+        return redirect()->route('MembersManagement')->with('success', 'Centre deleted successfully.');
+    }
+
+    public function deletePatient($id)
+    {
+        $members = Member::findOrFail($id);
+        $members->delete();
+        return redirect()->route('MembersManagement')->with('success', 'Centre deleted successfully.');
+    }
+
+    // Appointments management  route
+    public function AppointmentsManagement()
+    {
+        return view('admin.appointments');
+    
+    }
+
+    // Admin Settings route
+    public function AdminSettings()
+    {
+        return view('admin.settings');
+    }
 
 }

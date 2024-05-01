@@ -56,13 +56,22 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstr
 
         // Member Management routes
         Route::get('/users/members', 'MembersManagement')->name('MembersManagement');
+        Route::get('/members/{id}/edit', 'edit')->name('edit_member');
+        Route::delete('/members/{id}', 'deleteMember')->name('deleteMember');
+        Route::post('/members/{id}/update', [MemberController::class, 'memberUpdate'])->name('memberUpdate');
+
+        // Appointments Management routes
+        Route::get('/appointments', 'AppointmentsManagement')->name('AppointmentsManagement');
         
         // Patient Management routes
         Route::get('/users/patients', 'PatientsManagement')->name('PatientsManagement');
         Route::get('/users/patients-add', 'PatientsManagementAdd')->name('PatientsManagementAdd');
+        Route::delete('/patient/{id}', 'delete')->name('delete_member');
 
         // admin payments routes
         Route::get('/payments', 'AdminPayments')->name('AdminPayments');
+
+
 
     });
 
@@ -74,12 +83,14 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstr
 
     // Centre Management routes
     Route::controller(CentreController::class)->group(function () {
-        Route::post('/createCentre', 'createCentre')->name('createCentre');
         Route::get('/centres', 'CentresManagement')->name('CentresManagement');
+
         Route::get('/centre-add', 'CentresManagementAdd')->name('CentresManagementAdd');
-        Route::put('/centres/{id}', [CentreController::class, 'update'])->name('update_centre');
+        Route::post('/createCentre', 'createCentre')->name('createCentre');
+
         Route::get('/centres/{id}/edit', [CentreController::class, 'edit'])->name('edit_centre');
         Route::delete('/centres/{id}', [CentreController::class, 'delete'])->name('delete_centre');
+        Route::post('/centres/{id}', [CentreController::class, 'update'])->name('update_centre');
     });
 });
 

@@ -21,12 +21,34 @@ class CentreController extends Controller
         return view('admin.centres-add');
     }
 
+    // view centre edit page
     public function edit($id)
     {
         $centre = Centre::findOrFail($id);
         return view('admin.centres-edit', compact('centre'));
     }
     
+    // update centre
+    public function update(Request $request, $id)
+    {
+        $centre = Centre::findOrFail($id);
+    
+        $centre->centre_name = $request->input('centre_name');
+        $centre->centre_contact_number = $request->input('centre_contact_number');
+        $centre->centre_email_address = $request->input('centre_email_address');
+        $centre->centre_city = $request->input('centre_city');
+        $centre->address = $request->input('address');
+        $centre->centre_fee_type = $request->input('centre_fee_type');
+        $centre->centre_accept_currency = $request->input('centre_accept_currency');
+        $centre->centre_fee = $request->input('centre_fee');
+        $centre->refund_protection_fee = $request->input('refund_protection_fee');
+    
+        $centre->save();
+    
+        return redirect()->route('CentresManagement', $id)->with('success', 'Centre updated successfully!');
+    }
+    
+
     public function delete($id)
     {
         $centre = Centre::findOrFail($id);
