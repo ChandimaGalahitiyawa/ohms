@@ -27,7 +27,7 @@ class AdminController extends Controller
     // Admin Settings route
     public function AdminSettings()
     {
-        return view('admin.settings.profile');
+        return view('admin.settings');
     }
 
     // Admin dashboard route
@@ -75,5 +75,11 @@ class AdminController extends Controller
 
         return view('admin.users.patients-add');
     }
+
+     // Patient data route
+     public function AdminPayments()
+     {
+         return view('admin.payments');
+     }
 
 }

@@ -113,7 +113,7 @@ class PatientController extends Controller
     // patient profile route
     public function PatientSettings()
     {
-        return view('patient.settings.profile');
+        return view('patient.settings');
     }
 
     public function findBookings($id){

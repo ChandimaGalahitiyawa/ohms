@@ -52,7 +52,7 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstr
         Route::get('/dashboard', 'dashboard')->name('AdminDashboard');
 
         // Settins routes
-        Route::get('/settings/profile', 'AdminSettings')->name('AdminSettings');
+        Route::get('/settings', 'AdminSettings')->name('AdminSettings');
 
         // Member Management routes
         Route::get('/users/members', 'MembersManagement')->name('MembersManagement');
@@ -60,6 +60,10 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstr
         // Patient Management routes
         Route::get('/users/patients', 'PatientsManagement')->name('PatientsManagement');
         Route::get('/users/patients-add', 'PatientsManagementAdd')->name('PatientsManagementAdd');
+
+        // admin payments routes
+        Route::get('/payments', 'AdminPayments')->name('AdminPayments');
+
     });
 
     // Member Registration routes
@@ -88,7 +92,7 @@ Route::prefix('member')->middleware(['auth:sanctum', 'role:member', config('jets
         Route::get('/dashboard', 'dashboard')->name('MemberDashboard');
 
     // member profile routes
-    Route::get('/settings/profile', 'MemberSettings')->name('MemberSettings');
+    Route::get('/settings', 'MemberSettings')->name('MemberSettings');
 
     // add avalability routes
     Route::post('/createWeeklyAvailability', 'createWeeklyAvailability')->name('createWeeklyAvailability');
@@ -122,7 +126,7 @@ Route::prefix('patient')->middleware(['auth:sanctum', 'role:patient', config('je
         Route::get('find-bookings/{id}', 'findBookings')->name('findBookings');
 
         // patient profile routes
-        Route::get('/settings/profile', 'PatientSettings')->name('PatientSettings');
+        Route::get('/settings', 'PatientSettings')->name('PatientSettings');
 
     });
 

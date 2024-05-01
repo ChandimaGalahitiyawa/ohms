@@ -72,8 +72,8 @@
           </li>
 
           <li class="flex items-center">
-            <a href="#" class="" x-data>
                 <form method="POST" action="{{ route('logout') }}" x-on:click.prevent="$root.submit();">
+                  <a href="{{ route('logout') }}" class="" x-data>
                     @csrf
                     <button type="submit" class="block px-0 py-2 font-semibold transition-all ease-nav-brand text-sm text-slate-500 dark:text-white">
                         <i class="fa fa-user sm:mr-1" aria-hidden="true"></i> <span class="hidden sm:inline">Sign Out</span>

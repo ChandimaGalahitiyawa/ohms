@@ -22,10 +22,10 @@
     @foreach ($doctors as $member)
         <div class="pt-6 pb-6 w-full mx-auto">
             <div class="relative flex flex-col flex-auto min-w-0 overflow-hidden break-words border-0  dark:bg-gray-950 rounded-2xl bg-white/80 bg-clip-border backdrop-blur-2xl backdrop-saturate-200">
-            <div class="flex flex-wrap -mx-3">
+            <div class="flex flex-wrap">
                 <div class="flex-none w-auto max-w-full px-3">
                 <div class="text-base ease-soft-in-out h-19 w-19 relative inline-flex items-center justify-center rounded-xl text-white transition-all duration-200">
-                    <img src="../../../assets/img/bruce-mars.jpg" alt="profile_image" class="w-full shadow-soft-sm rounded-xl" />
+                    <img src="{{asset('/assets/img/profile.jpeg')}}" alt="profile_image" class="w-full shadow-soft-sm rounded-xl" />
                 </div>
                 </div>
                 <div class="flex-none w-auto max-w-full px-3 my-auto">

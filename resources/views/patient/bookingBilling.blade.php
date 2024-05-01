@@ -2,7 +2,7 @@
 @extends('patient.layouts.app')
 
 @section('content')
-<div class="p-6 mx-6 rounded-2xl bg-white/80 bg-clip-border backdrop-blur-2xl backdrop-saturate-200 ">
+<div class="flex-auto p-6 w-6/12 mx-auto overflow-hidden break-words border-0 shadow-blur dark:shadow-soft-dark-xl dark:bg-gray-950 rounded-2xl bg-white/80 bg-clip-border backdrop-blur-2xl backdrop-saturate-200">
     <div class="w-full mx-auto">
      
         <h3 class="text-xl font-bold mb-4s">Make Your Booking For {{$doctor->user->name}} {{$doctor->last_name}} For {{$date}}</h3>
@@ -141,7 +141,7 @@ if (document.getElementById("choices-centers")) {
         // Check if the countdown has reached zero
         if (countdownTime <= 0) {
             clearInterval(timerInterval); // Stop the timer
-            // Optionally, you can add code here to handle what happens when the timer expires
+            // Optionally
         }
     }, 1000); // Update the timer every second (1000 milliseconds)
 </script>

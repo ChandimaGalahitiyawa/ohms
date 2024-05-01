@@ -13,7 +13,7 @@
             <input datetimepicker name="start_date"  id="DatePicker" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" type="text" placeholder="Filter By Date" />
         </div>
     </div> --}}
-   <div class="py-6 w-full lg:w-8/12">
+   <div>
         @foreach($centers as $center)
             @if(isset($availableDays[$center->id]))
             <h2 class="mb-0 py-4 uppercase leading-normal text-xl font-bold text-slate-700 dark:text-white">{{$center->centre_name}}</h2>
@@ -42,7 +42,6 @@
                                 </div>
                             </div>
                         </div>
-                        <hr class="h-px mx-0 my-6 mb-0 bg-transparent border-0 opacity-25 bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
                         </li>
                         
                     @endforeach
