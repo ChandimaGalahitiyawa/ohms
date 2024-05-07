@@ -88,9 +88,9 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstr
         Route::get('/centre-add', 'CentresManagementAdd')->name('CentresManagementAdd');
         Route::post('/createCentre', 'createCentre')->name('createCentre');
 
-        Route::get('/centres/{id}/edit', [CentreController::class, 'edit'])->name('edit_centre');
-        Route::delete('/centres/{id}', [CentreController::class, 'delete'])->name('delete_centre');
-        Route::post('/centres/{id}', [CentreController::class, 'update'])->name('update_centre');
+        Route::get('/centres/{id}/edit', 'edit')->name('edit_centre');
+        Route::post('/centre/delete/{id}', 'delete')->name('delete_centre');
+        Route::post('/centres/update/{id}', 'update')->name('update_centre');
     });
 });
 

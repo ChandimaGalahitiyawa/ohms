@@ -43,17 +43,17 @@
                         <td class="leading-normal text-sm">{{ $centre->centre_accept_currency }}</td>
                         <td class="leading-normal text-sm">{{ ucfirst($centre->centre_fee_type) }}</td>
                         <td class="leading-normal text-sm">{{ number_format($centre->centre_fee, 2) }}</td>
-                        <td class="leading-normal text-sm">
+                        <td class="leading-normal flex justify-end items-center text-sm">
                             <a href="{{ route('edit_centre', $centre->id) }}" class="mx-4">
                                 <i class="fas fa-user-edit text-slate-400 dark:text-white/70"></i>
                             </a>
-                            <a href="javascript:void(0);" onclick="event.preventDefault(); if(confirm('Are you sure? If you delete this, it cannot be recovered.')) document.getElementById('delete-form-{{ $centre->id }}').submit();">
-                              <i class="fas fa-trash text-slate-400 dark:text-white/70"></i>
-                          </a>
-                          <form id="delete-form-{{ $centre->id }}" action="{{ route('delete_centre', $centre->id) }}" method="POST" style="display: none;">
-                              @csrf
-                              @method('DELETE')
-                          </form>
+                          <form id="delete-form-{{ $centre->id }}" action="{{ route('delete_centre', $centre->id) }}" method="POST">
+                            @csrf
+                            <!-- Change the type to "button" -->
+                            <button type="button" onclick="confirmDeletion({{ $centre->id }});" class="btn btn-danger">
+                                <i class="fas fa-trash text-slate-400 dark:text-white/70"></i>
+                            </button>
+                        </form>
                           
                         </td>
                     </tr>

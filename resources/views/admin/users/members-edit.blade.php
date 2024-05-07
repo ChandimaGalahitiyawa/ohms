@@ -58,7 +58,7 @@
     <!-- Nationality Field -->
     <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Nationality</label>
     <div class="mb-4">
-        <select name="nationality" id="nationality" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
+        <select name="nationality" id="nationality" class=" w-full px-3 py-2 focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
             <option value="Local" {{ $member->nationality == 'Local' ? 'selected' : '' }}>Local</option>
             <option value="Foreign" {{ $member->nationality == 'Foreign' ? 'selected' : '' }}>Foreign</option>
         </select>

@@ -5,7 +5,7 @@
   <form role="form" method="POST" action="{{ route('update_centre', $centre->id) }}">
       @csrf 
       <h3 class="text-xl font-bold mb-4">Update Centre Information </h3>    
-      <p class="text font-normal">>Update only the necessary fields.</p>
+      <p class="text font-normal">Update only the necessary fields.</p>
       <!-- Centre Name Field -->
       <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Centre Name</label>
       <div class="mb-4">
