@@ -57,8 +57,8 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstr
         // Member Management routes
         Route::get('/users/members', 'MembersManagement')->name('MembersManagement');
         Route::get('/members/{id}/edit', 'edit')->name('edit_member');
-        Route::delete('/members/{id}', 'deleteMember')->name('deleteMember');
-        Route::post('/members/{id}/update', [MemberController::class, 'memberUpdate'])->name('memberUpdate');
+        Route::post('/members/{id}', 'deleteMember')->name('deleteMember');
+        Route::post('/members/{id}/update', 'memberUpdate')->name('memberUpdate');
 
         // Appointments Management routes
         Route::get('/appointments', 'AppointmentsManagement')->name('AppointmentsManagement');
@@ -138,6 +138,9 @@ Route::prefix('patient')->middleware(['auth:sanctum', 'role:patient', config('je
 
         // patient profile routes
         Route::get('/settings', 'PatientSettings')->name('PatientSettings');
+
+        // patient data routes
+        Route::get('/medical-data', 'PatientData')->name('PatientData');
 
     });
 

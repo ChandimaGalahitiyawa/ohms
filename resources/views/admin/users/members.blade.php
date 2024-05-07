@@ -42,16 +42,17 @@
                           <td class="leading-normal text-sm">{{ $members->phone }}</td>
                           <td class="leading-normal text-sm">{{ $members->nationality }}</td>
                           <td class="leading-normal text-sm">{{ $members->nic ?? $members->members }}</td>
-                          <td class="leading-normal text-sm">
+                          <td class="leading-normal flex items-center gap-2 justify-end text-sm">
                             <a href="{{ route('edit_member', $members->id) }}" class="mx-4">
                                 <i class="fas fa-user-edit text-slate-400 dark:text-white/70"></i>
                             </a>
-                            <a href="javascript:void(0);" onclick="event.preventDefault(); if(confirm('Are you sure? If you delete this, it cannot be recovered.')) document.getElementById('delete-form-{{ $members->id }}').submit();">
-                              <i class="fas fa-trash text-slate-400 dark:text-white/70"></i>
-                          </a>
-                          <form id="delete-form-{{ $members->id }}" action="{{ route('deleteMember', $members->id) }}" method="POST" style="display: none;">
+                            <form id="delete-form-{{ $members->id }}" action="{{ route('deleteMember', $members->id) }}" method="POST">
                               @csrf
-                              @method('DELETE')
+                          
+                              <!-- Change the type to "button" -->
+                              <button type="button" onclick="confirmDeletion({{ $members->id }});" class="btn btn-danger">
+                                  <i class="fas fa-trash text-slate-400 dark:text-white/70"></i>
+                              </button>
                           </form>
                           
                         </td>
@@ -77,3 +78,28 @@
   </div>
 
 @endsection
+
+@push('scripts')
+    
+<script>
+  function confirmDeletion(memberId) {
+      Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              // If confirmed, submit the form
+              document.getElementById('delete-form-' + memberId).submit();
+          }
+      });
+  }
+  </script>
+
+
+
+@endpush

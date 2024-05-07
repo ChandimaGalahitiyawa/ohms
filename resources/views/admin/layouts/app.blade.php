@@ -98,4 +98,5 @@
   </body>
   <!-- Footer links -->
   @include('admin.includes.footerlinks')
+  @stack('scripts')
 </html>

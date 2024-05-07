@@ -81,22 +81,23 @@ class AdminController extends Controller
     // Edit member edit page
     public function edit($id)
     {
-        $member = Member::with('user')->findOrFail($id);
+
+        $member = Member::findOrFail($id);
+
         return view('admin.users.members-edit', compact('member'));
     }    
 
     public function deleteMember($id)
     {
-        $members = Member::findOrFail($id);
-        $members->delete();
-        return redirect()->route('MembersManagement')->with('success', 'Centre deleted successfully.');
-    }
+        $member = Member::findOrFail($id);
 
-    public function deletePatient($id)
-    {
-        $members = Member::findOrFail($id);
-        $members->delete();
-        return redirect()->route('MembersManagement')->with('success', 'Centre deleted successfully.');
+        $user = $member->user;
+
+        $member->delete();
+
+        $user->delete();
+
+        return redirect()->route('MembersManagement')->with('success', 'Member deleted successfully.');
     }
 
     // Appointments management  route
@@ -110,6 +111,51 @@ class AdminController extends Controller
     public function AdminSettings()
     {
         return view('admin.settings');
+    }
+
+
+    // Member update
+    public function memberUpdate(Request $request, $id)
+    {
+        $member = Member::findOrFail($id);
+        $user = $member->user;
+
+        $validatedData = $request->validate([
+            'FirstName' => 'required|string|max:255',
+            'LastName' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,'.$user->id.'|max:255',
+            'nic' => ['nullable', 'string', 'regex:/^(?:\d{9}[VX]|\d{12})$/'],
+            'passport' => 'nullable|string',
+            'nationality' => 'required|string',
+            'phone' => 'nullable|string|max:13|min:10',
+            'dob' => 'nullable|date',
+            'address' => 'nullable|string|max:255',
+            'medical_school' => 'nullable|string|max:255',
+            'license_number' => 'nullable|string|max:255',
+        ]);
+
+        $user->name = $validatedData['FirstName'];
+        $user->email = $validatedData['email'];
+
+        $user->save();
+
+        $nicOrPassport = $request->input('nationality') === 'Local' ? $validatedData['nic'] : $validatedData['passport'];
+
+        $memberData = [
+            'last_name' => $validatedData['LastName'],
+            'nic' => $request->input('nationality') === 'Local' ? $nicOrPassport : null,
+            'passport' => $request->input('nationality') !== 'Local' ? $nicOrPassport : null,
+            'phone' => $validatedData['phone'],
+            'dob' => $validatedData['dob'],
+            'address' => $validatedData['address'],
+            'medical_school' => $validatedData['medical_school'],
+            'license_number' => $validatedData['license_number'],
+            'nationality' => $validatedData['nationality'],
+        ];
+
+        $member->update($memberData);
+
+        return redirect()->route('MembersManagement');
     }
 
 }

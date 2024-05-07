@@ -25,32 +25,35 @@
               <table class="table" datatable id="products-list">
                   <thead class="thead-light">
                       <tr>
-                          <th>Name</th>
-                          <th>Email</th>
-                          <th>Phone</th>
-                          <th>Accept Currency</th>
-                          <th>Fee Type</th>
+                          <th>Id</th>
+                          <th>Center</th>
+                          <th>day</th>
+                          <th>duration</th>
+                          <th>slots</th>
                           <th>Fee</th>
                           <th>Action</th>
                       </tr>
                   </thead>
                   <tbody>
-                      <tr>
-                          <td class="leading-normal text-sm">...</td>
-                          <td class="leading-normal text-sm">...</td>
-                          <td class="leading-normal text-sm">...</td>
-                          <td class="leading-normal text-sm">...</td>
-                          <td class="leading-normal text-sm">...</td>
-                          <td class="leading-normal text-sm">...</td>
-                          <td class="leading-normal text-sm">
-                              <a href="javascript:;" class="mx-4" >
-                                  <i class="fas fa-user-edit text-slate-400 dark:text-white/70"></i>
-                              </a>
-                              <a href="javascript:;" >
-                                  <i class="fas fa-trash text-slate-400 dark:text-white/70"></i>
-                              </a>
-                          </td>
-                      </tr>
+                    @foreach ($availabilities as $availibilty);
+                    <tr>
+                      <td class="leading-normal text-sm">{{$availibilty->id}}</td>
+                      <td class="leading-normal text-sm">{{$availibilty->centre->centre_name}} - {{$availibilty->centre->centre_city}}</td>
+                      <td class="leading-normal text-sm">{{$availibilty->day}}</td>
+                      <td class="leading-normal text-sm">{{$availibilty->start_time}} - {{$availibilty->end_time}}</td>
+                      <td class="leading-normal text-sm">{{$availibilty->slots}}</td>
+                      <td class="leading-normal text-sm">...</td>
+                      <td class="leading-normal text-sm">
+                          <a href="javascript:;" class="mx-4" >
+                              <i class="fas fa-user-edit text-slate-400 dark:text-white/70"></i>
+                          </a>
+                          <a href="javascript:;" >
+                              <i class="fas fa-trash text-slate-400 dark:text-white/70"></i>
+                          </a>
+                      </td>
+                  </tr>
+                    @endforeach
+                   
                   </tbody>
                   <tfoot>
                       <tr>

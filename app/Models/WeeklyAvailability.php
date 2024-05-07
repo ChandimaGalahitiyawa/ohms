@@ -19,7 +19,7 @@ class WeeklyAvailability extends Model
 
     public function centre(): BelongsTo
     {
-        return $this->belongsTo(Centre::class);
+        return $this->belongsTo(Centre::class, 'center_id');
     }
     
 }

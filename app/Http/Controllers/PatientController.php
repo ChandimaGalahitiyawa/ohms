@@ -110,6 +110,12 @@ class PatientController extends Controller
         return view('patient.channel');
     }
 
+    // Patient data route
+    public function PatientData()
+    {
+        return view('patient.medical-data');
+    }
+
     // patient profile route
     public function PatientSettings()
     {

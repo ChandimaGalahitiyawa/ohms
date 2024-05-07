@@ -31,7 +31,6 @@
                           <th>Phone</th>
                           <th>Nationality</th>
                           <th>NIC/PP</th>
-                          <th>Action</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -42,14 +41,6 @@
                           <td class="leading-normal text-sm">{{ $patient->phone }}</td>
                           <td class="leading-normal text-sm">{{ $patient->nationality }}</td>
                           <td class="leading-normal text-sm">{{ $patient->nic ?? $patient->passport }}</td>
-                          <td class="leading-normal text-sm">
-                              <a href="javascript:;" class="mx-4" >
-                                  <i class="fas fa-user-edit text-slate-400 dark:text-white/70"></i>
-                              </a>
-                              <a href="javascript:;" >
-                                  <i class="fas fa-trash text-slate-400 dark:text-white/70"></i>
-                              </a>
-                          </td>
                       </tr>
                       @endforeach
                   </tbody>
@@ -60,7 +51,6 @@
                           <th>Phone</th>
                           <th>Nationality</th>
                           <th>NIC/PP</th>
-                          <th>Action</th>
                       </tr>
                   </tfoot>
               </table>

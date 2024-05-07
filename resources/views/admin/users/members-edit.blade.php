@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="flex-auto p-6 w-6/12 mx-auto overflow-hidden break-words border-0 shadow-blur dark:shadow-soft-dark-xl dark:bg-gray-950 rounded-2xl bg-white/80 bg-clip-border backdrop-blur-2xl backdrop-saturate-200 ">
-    {{-- <form role="form" method="POST" action="{{ route('memberUpdate', $member->id) }}"> --}}
+    <form role="form" method="POST" action="{{ route('memberUpdate', $member->id) }}">
       @csrf  
 
       <h3 class="text-xl font-bold mb-4">Update Member</h3>

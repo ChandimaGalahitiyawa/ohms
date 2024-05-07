@@ -5,3 +5,4 @@
 <script src="{{asset('/assets/js/soft-ui-dashboard-pro-tailwind.js?v=1.0.1')}}"></script>
 <script src="{{asset('/assets/js/plugins/datatables.min.js')}}"></script>
 <script src="{{asset('/assets/js/plugins/choices.min.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

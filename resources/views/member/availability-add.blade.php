@@ -9,7 +9,6 @@
     <br>
     <div class="my-10 w-full mx-auto">
 
-
         <div class="w-full mx-auto">
             <div accordion>
               <div accordion-section class="mb-4 rounded-t-1">

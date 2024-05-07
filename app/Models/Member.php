@@ -54,7 +54,7 @@ class Member extends Model
     // Member.php model
     public function isAvailableOn(Carbon $date)
     {
-        // Use your existing logic with specific and weekly availabilities here
+        // existing logic with specific and weekly availabilities here
     }
 
     public function nextAvailableDateAfter(Carbon $date)
