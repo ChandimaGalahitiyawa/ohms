@@ -31,7 +31,6 @@
                           <th>Phone</th>
                           <th>Nationality</th>
                           <th>NIC/PP</th>
-                          <th>Status</th>
                           <th>Action</th>
                       </tr>
                   </thead>
@@ -43,20 +42,20 @@
                           <td class="leading-normal text-sm">{{ $members->phone }}</td>
                           <td class="leading-normal text-sm">{{ $members->nationality }}</td>
                           <td class="leading-normal text-sm">{{ $members->nic ?? $members->members }}</td>
-                          <td>
-                              <span class="py-1.8 px-3 text-xxs rounded-1 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-red-700 bg-red-200">Active</span>
-                          </td>
-                          <td class="leading-normal text-sm">
-                              <a href="javascript:;" >
-                                  <i class="fas fa-eye text-slate-400 dark:text-white/70"></i>
-                              </a>
-                              <a href="javascript:;" class="mx-4" >
-                                  <i class="fas fa-user-edit text-slate-400 dark:text-white/70"></i>
-                              </a>
-                              <a href="javascript:;" >
+                          <td class="leading-normal flex items-center gap-2 justify-end text-sm">
+                            <a href="{{ route('edit_member', $members->id) }}" class="mx-4">
+                                <i class="fas fa-user-edit text-slate-400 dark:text-white/70"></i>
+                            </a>
+                            <form id="delete-form-{{ $members->id }}" action="{{ route('deleteMember', $members->id) }}" method="POST">
+                              @csrf
+                          
+                              <!-- Change the type to "button" -->
+                              <button type="button" onclick="confirmDeletion({{ $members->id }});" class="btn btn-danger">
                                   <i class="fas fa-trash text-slate-400 dark:text-white/70"></i>
-                              </a>
-                          </td>
+                              </button>
+                          </form>
+                          
+                        </td>
                       </tr>
                       @endforeach
                   </tbody>
@@ -67,7 +66,6 @@
                           <th>Phone</th>
                           <th>Nationality</th>
                           <th>NIC/PP</th>
-                          <th>Status</th>
                           <th>Action</th>
                       </tr>
                   </tfoot>
@@ -80,3 +78,4 @@
   </div>
 
 @endsection
+

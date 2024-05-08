@@ -2,10 +2,11 @@
 
 @section('content')
 
-<div class="flex-auto p-6 w-6/12 mx-auto">
+<div class="flex-auto p-6 w-6/12 mx-auto overflow-hidden break-words border-0 shadow-blur dark:shadow-soft-dark-xl dark:bg-gray-950 rounded-2xl bg-white/80 bg-clip-border backdrop-blur-2xl backdrop-saturate-200">
     <form role="form" method="POST" action="{{ route('createPatient') }}">
       @csrf  
-
+      <h3 class="text-xl font-bold mb-4">Add Patient</h3>
+      <p class="text font-normal">Include all details to create a patient.</p>
       <div class="flex w-full">
         <!-- First Name Field -->
         <div class="flex flex-col mr-4 w-full lg:w-6/12">
@@ -84,11 +85,6 @@
         });
     </script>
 
-
-
-
-
-
       <!-- Password Field -->
       <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Temporary Password</label>
       <div class="mb-4">
@@ -109,10 +105,10 @@
 
       <div class="text-center">
         <input type="hidden" name="registered_by_admin" value="yes">
-        <button type="submit" class="inline-block w-full px-6 py-3 mt-6 mb-0 font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25">Add Patient</button>
+        <button type="submit" class="inline-block w-full px-6 py-3 mt-6 mb-0 font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25">Submit</button>
       </div>
     </form>
   </div>
 </div>
-
+<br><br>
 @endsection

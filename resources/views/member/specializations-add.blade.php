@@ -2,11 +2,12 @@
 
 @section('content')
 
-<div class="flex-auto p-6 w-6/12 mx-auto">
+<div class="flex-auto p-6 w-6/12 mx-auto overflow-hidden break-words border-0 shadow-blur dark:shadow-soft-dark-xl dark:bg-gray-950 rounded-2xl bg-white/80 bg-clip-border backdrop-blur-2xl backdrop-saturate-200">
     <div class="my-10 w-full mx-auto">
         <form role="form" method="POST" action="{{ route('createSpecialization') }}">
         @csrf
         <h3 class="text-xl font-bold mb-4">Add Specializations</h3>
+        <p class="text font-normal">You can add specializations according to your expertise. Each specialization needs to specify how much you charge per session, according to your rates.</p>
         <div id="specializations-container">
             <!-- Static Labels -->
             <div class="flex flex-wrap w-full items-center mb-4">
@@ -86,4 +87,5 @@
     </div>
   </div>
 </div>
+<br><br>
 @endsection

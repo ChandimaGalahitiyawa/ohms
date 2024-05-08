@@ -20,6 +20,8 @@
             </div>
           </div>
 
+   
+
           {{-- table --}}
           <div class="flex-auto p-6 px-0 pb-0">
             <div class="overflow-x-auto table-responsive">

@@ -12,7 +12,7 @@
       @yield('content')
     </main>
 
-@include('auth.includes.footer')
+{{-- @include('auth.includes.footer') --}}
   </body>
 
 @include('auth.includes.footerlinks')

@@ -15,9 +15,35 @@ if (document.getElementById("choices-language")) {
   const example = new Choices(language);
 }
 
-//custom ones
+//appointments ones
 if (document.getElementById("choices-member")) {
   var language = document.getElementById("choices-member");
+  const example = new Choices(language);
+}
+
+if (document.getElementById("choices-centre")) {
+  var language = document.getElementById("choices-centre");
+  const example = new Choices(language);
+}
+
+if (document.getElementById("choices-specialization")) {
+  var language = document.getElementById("choices-specialization");
+  const example = new Choices(language);
+}
+
+if (document.getElementById("choices-date")) {
+  var language = document.getElementById("choices-date");
+  const example = new Choices(language);
+}
+
+// Add Availability
+if (document.getElementById("choices-centre1")) {
+  var language = document.getElementById("choices-centre1");
+  const example = new Choices(language);
+}
+
+if (document.getElementById("choices-centre2")) {
+  var language = document.getElementById("choices-centre2");
   const example = new Choices(language);
 }
 
