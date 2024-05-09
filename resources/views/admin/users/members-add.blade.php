@@ -2,10 +2,11 @@
 
 @section('content')
 
-<div class="flex-auto p-6 w-6/12 mx-auto ">
+<div class="flex-auto p-6 w-6/12 mx-auto overflow-hidden break-words border-0 shadow-blur dark:shadow-soft-dark-xl dark:bg-gray-950 rounded-2xl bg-white/80 bg-clip-border backdrop-blur-2xl backdrop-saturate-200 ">
     <form role="form" method="POST" action="{{ route('createMember') }}">
       @csrf  
-
+      <h3 class="text-xl font-bold mb-4">Add Member</h3>
+      <p class="text font-normal">Include all details to create a member (doctors/consultants, specialists, ...etc).</p>
       <div class="flex w-full">
         <!-- First Name Field -->
         <div class="flex flex-col mr-4 w-full lg:w-6/12">
@@ -148,5 +149,6 @@
     </form>
   </div>
 </div>
-
+<br>
+<br>
 @endsection

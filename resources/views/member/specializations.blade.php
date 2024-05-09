@@ -20,37 +20,38 @@
             </div>
           </div>
 
+   
+
           {{-- table --}}
           <div class="flex-auto p-6 px-0 pb-0">
             <div class="overflow-x-auto table-responsive">
               <table class="table" datatable id="products-list">
                   <thead class="thead-light">
                       <tr>
-                          <th>Name</th>
-                          <th>Fee</th>
-                          {{-- <th>Status</th> --}}
+                          <th>id</th>
+                          <th>specialization</th>
+                          <th>fee</th>
                           <th>Action</th>
                       </tr>
                   </thead>
                   <tbody>
-                      <tr>
-                          <td class="leading-normal text-sm">lorem</td>
-                          <td class="leading-normal text-sm">lorem</td>
-                          {{-- <td>
-                              <span class="py-1.8 px-3 text-xxs rounded-1 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-red-700 bg-red-200">Active</span>
-                          </td> --}}
-                          <td class="leading-normal text-sm">
-                              <a href="javascript:;" >
-                                  <i class="fas fa-eye text-slate-400 dark:text-white/70"></i>
-                              </a>
-                              <a href="javascript:;" class="mx-4" >
-                                  <i class="fas fa-user-edit text-slate-400 dark:text-white/70"></i>
-                              </a>
-                              <a href="javascript:;" >
-                                  <i class="fas fa-trash text-slate-400 dark:text-white/70"></i>
-                              </a>
-                          </td>
-                      </tr>
+                    @foreach($specializations as $specialization)
+                    <tr>
+                      <td class="leading-normal text-sm">{{$specialization->id}}</td>
+                      <td class="leading-normal text-sm">{{$specialization->name}}</td>
+                      <td class="leading-normal text-sm">{{$specialization->pivot->fee}}</td>
+                      <td class="leading-normal flex justify-end items-center text-sm">
+                          <form id="delete-form-{{ $specialization->id }}" action="{{ route('detachSpecialization', $specialization->id) }}" method="POST">
+                            @csrf
+                        
+                            <!-- Change the type to "button" -->
+                            <button type="button" onclick="confirmDeletion({{ $specialization->id }});" class="btn btn-danger">
+                                <i class="fas fa-trash text-slate-400 dark:text-white/70"></i>
+                            </button>
+                        </form>
+                      </td>
+                  </tr>
+                  @endforeach
                   </tbody>
                   <tfoot>
                       <tr>

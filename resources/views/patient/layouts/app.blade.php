@@ -5,7 +5,15 @@
 
   <body class="m-0 font-sans antialiased font-normal text-left leading-default text-base dark:bg-slate-950 bg-gray-50 text-slate-500 dark:text-white/80">
     <!-- sidenav -->
-      @include('patient.includes.sidenav')
+       @if(Auth::check())
+        @if(Auth::user()->hasRole('admin'))
+          @include('admin.includes.sidenav')
+        @elseif(Auth::user()->hasRole('member'))
+          @include('member.includes.sidenav')
+        @elseif(Auth::user()->hasRole('patient'))
+          @include('patient.includes.sidenav')
+        @endif
+      @endif
 
 
     <main class="ease-soft-in-out xl:ml-68 relative h-full max-h-screen rounded-xl transition-all duration-200">
@@ -98,4 +106,5 @@
   </body>
   <!-- Footer links -->
   @include('patient.includes.footerlinks')
+  @stack('scripts')
 </html>

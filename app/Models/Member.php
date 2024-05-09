@@ -2,9 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Centre;
 use App\Models\Specialization;
+use Illuminate\Support\Carbon;
+use App\Models\WeeklyAvailability;
+use App\Models\SpecificAvailability;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Member extends Model
@@ -26,17 +31,35 @@ class Member extends Model
                     ->withPivot('fee')
                     ->withTimestamps();
     }
-    
-    // this will call the weekly availability model and return the weekly availabilities of the member
-    public function weeklyAvailabilities()
+
+
+    // this will call the centre model and return the centres of the member
+    public function centres()
+    {
+        return $this->belongsToMany(Centre::class, 'member_availability_centre')
+                    ->withPivot('weekly_availability_id', 'specific_availability_id')
+                    ->withTimestamps();
+    }    
+
+    public function weeklyAvailabilities(): HasMany
     {
         return $this->hasMany(WeeklyAvailability::class);
     }
 
-    // this will call the specific availability model and return the specific availabilities of the member
     public function specificAvailabilities()
     {
         return $this->hasMany(SpecificAvailability::class);
+    }
+
+    // Member.php model
+    public function isAvailableOn(Carbon $date)
+    {
+        // existing logic with specific and weekly availabilities here
+    }
+
+    public function nextAvailableDateAfter(Carbon $date)
+    {
+        // Implement more refined logic to find the earliest next available date
     }
 
 }

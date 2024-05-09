@@ -1,7 +1,7 @@
 @extends('patient.layouts.app')
 
 @section('content')
-<div class="p-6 w-6/12 mx-auto">
+<div class="p-6 w-6/12 mx-auto rounded-2xl bg-white/80 bg-clip-border backdrop-blur-2xl backdrop-saturate-200 ">
     <div class="w-full mx-auto">
         <form role="form" method="POST" action="#">
         @csrf
@@ -15,18 +15,22 @@
         </div>
 
         <div class="mt-4">
+            <select choice name="member" id="choices-centre" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline border border-solid border-gray-300  background:white rounded-lg" style="background: #fff important;">
+                <option value="">Any Centre</option>
+                <option value="member">First Name + City Name</option>
+            </select>
+        </div>
+
+        <div class="mt-4">
             <select name="specialization" choice  id="choices-specialization" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline border border-solid border-gray-300  background:white rounded-lg" style="background: #fff important;">
-                <option value="">Specialization</option>
-                <option value="Monday">Selected Member's Specialization</option>
+                <option value="">Any Specialization</option>
+                <option value="Monday">Any Specialization</option>
                 <option value="Monday">if member not select, direct search specialization show all members Specialization</option>
             </select>
         </div>
 
         <div class="mt-4">
-            <div class="relative z-0 flex flex-col min-w-0 p-3 break-words bg-white border-0 shadow-xl rounded-2xl bg-clip-border">
-                this will show selected member's Availability in calendar, based on Specialization or member selected, or if member not selected, then not show any members Availability in calendar
-                <div data-toggle="calendar" id="calendar"></div>
-            </div>
+            <input type="date" name="date" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline border border-solid border-gray-300  background:white rounded-lg" style="background: #fff important;">
         </div>
         <!-- Submit Button -->
         <div class="mt-4 text-center">
@@ -49,7 +53,7 @@
             <div class="mt-4 text-center">
                 <button type="submit" class="inline-block w-full px-6 py-3 mt-2 pt-10 font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25">Book now</button>
             </div>
-        </form>
+        </form> 
     </div>
   </div>
 </div>
