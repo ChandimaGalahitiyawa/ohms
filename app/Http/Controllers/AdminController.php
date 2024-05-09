@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Centre;
 use App\Models\Member;
 use App\Models\Patient;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PatientController;
-use App\Models\User;
 
 
 class AdminController extends Controller
@@ -23,13 +27,33 @@ class AdminController extends Controller
         $request->session()->invalidate();  // Invalidate the session
         $request->session()->regenerateToken();  // Regenerate the CSRF token
 
+
+
         return redirect('login');  // Redirect to login page with a message
     }
 
     // Admin dashboard route
     public function dashboard()
     {
-        return view('admin.dashboard');
+
+        $pendingAppointments = Appointment::where('status', 'pending')->get();
+
+        $completedAppointments = Appointment::where('status', 'completed')->get();
+
+        $totalCenterCharge = Appointment::sum('center_charge');
+
+        $totalDoctorCharge = Appointment::sum('doctor_charge');
+
+        $centers = Centre::get();
+
+
+        
+        $centerChargesByCenter = Appointment::selectRaw('centres.centre_name as center_name, SUM(appointments.center_charge) as total_center_charge')
+        ->join('centres', 'appointments.centre_id', '=', 'centres.id')
+        ->groupBy('appointments.centre_id', 'centres.centre_name')
+        ->get();
+
+        return view('admin.dashboard', compact('pendingAppointments', 'completedAppointments', 'totalCenterCharge', 'totalDoctorCharge','centerChargesByCenter'));
     } 
 
     // Patients Management
@@ -103,7 +127,11 @@ class AdminController extends Controller
     // Appointments management  route
     public function AppointmentsManagement()
     {
-        return view('admin.appointments');
+
+        $bookings = Appointment::get();
+
+
+        return view('admin.appointments', compact('bookings'));
     
     }
 
@@ -156,6 +184,72 @@ class AdminController extends Controller
         $member->update($memberData);
 
         return redirect()->route('MembersManagement');
+    }
+
+
+    public function fetchDataForChart()
+    {
+        // Calculate the start date (8 months ago from now)
+        $startDate = Carbon::now()->subMonths(7)->startOfMonth();
+    
+        // Create an array to store the labels
+        $labels = [];
+    
+        // Loop through each month from the start date to the current month
+        for ($i = 0; $i < 8; $i++) {
+            // Add the formatted month label to the array
+            $labels[] = $startDate->format('M Y');
+    
+            // Move to the next month
+            $startDate->addMonth();
+        }
+    
+        // Fetch monthly data for the last 8 months
+        $monthlyData = Appointment::select(
+                DB::raw('MONTH(appointment_date) as month'),
+                DB::raw('YEAR(appointment_date) as year'),
+                DB::raw('SUM(doctor_charge) as total_doctor_charge'),
+                DB::raw('SUM(center_charge) as total_center_charge')
+            )
+            ->groupBy('year', 'month')
+            ->orderBy('year')
+            ->orderBy('month')
+            ->get();
+    
+        // Initialize arrays for doctor charges, center charges, and totals
+        $doctorCharges = [];
+        $centerCharges = [];
+        $totals = [];
+    
+        // Loop through the labels array and check if the month exists in the fetched data
+        foreach ($labels as $label) {
+            // Extract month and year from the label
+            $monthYear = Carbon::createFromFormat('M Y', $label);
+    
+            // Find the corresponding data for the current label
+            $data = $monthlyData->first(function ($item) use ($monthYear) {
+                return $item->month == $monthYear->month && $item->year == $monthYear->year;
+            });
+    
+            // If data exists, add it to the respective arrays; otherwise, add zeros
+            if ($data) {
+                $doctorCharges[] = $data->total_doctor_charge;
+                $centerCharges[] = $data->total_center_charge;
+                $totals[] = $data->total_doctor_charge + $data->total_center_charge;
+            } else {
+                $doctorCharges[] = 0;
+                $centerCharges[] = 0;
+                $totals[] = 0;
+            }
+        }
+    
+        // Return the data as JSON response
+        return response()->json([
+            'labels' => $labels,
+            'doctorCharges' => $doctorCharges,
+            'centerCharges' => $centerCharges,
+            'totals' => $totals,
+        ]);
     }
 
 }

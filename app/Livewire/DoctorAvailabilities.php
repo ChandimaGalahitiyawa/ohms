@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Centre;
 use Livewire\Component;
+use App\Models\Appointment;
 use App\Models\WeeklyAvailability;
 
 class DoctorAvailabilities extends Component
@@ -27,6 +28,8 @@ class DoctorAvailabilities extends Component
         // Get the current date
         $currentDate = now();
 
+        $availableSlots = 0;
+
         // Loop through the next 15 days
         for ($i = 0; $i < 15; $i++) {
             // Calculate the date
@@ -38,6 +41,16 @@ class DoctorAvailabilities extends Component
                 ->first();
 
             if ($availability) {
+                $totalSlots = $availability->slots;
+
+                $existingAppointments = Appointment::where('member_id', $this->doctor->id)
+                ->whereDate('appointment_date', $date)
+                ->count();
+
+                $availableSlots = max(0, $totalSlots - $existingAppointments);
+            }
+
+            if ($availability) {
                 // If the doctor is available, group the date by center
                 $centerId = $availability->center_id;
 
@@ -45,7 +58,7 @@ class DoctorAvailabilities extends Component
                     $this->availableDays[$centerId] = [];
                 }
 
-                $this->availableDays[$centerId][$date->format('Y-m-d')] = $availability->slots;
+                $this->availableDays[$centerId][$date->format('Y-m-d')] = $availableSlots;
             }
         }
     }
@@ -55,6 +68,7 @@ class DoctorAvailabilities extends Component
         return view('livewire.doctor-availabilities', [
             'centers' => $this->centers,
             'availableDays' => $this->availableDays,
+            ''
         ]);
     }
 }

@@ -30,6 +30,7 @@
                           <th>Center</th>
                           <th>Doctor</th>
                           <th>Total</th>
+                          <th>Status</th>
                           <th>Action</th>
                       </tr>
                   </thead>
@@ -41,25 +42,25 @@
                         <td class="leading-normal text-sm">{{$booking->center->centre_name}}</td>
                         <td class="leading-normal text-sm">{{$booking->doctor->user->name}} {{$booking->doctor->last_name}} </td>
                         <td class="leading-normal text-sm">{{$booking->total}}</td>
+                        <td class="p-2 leading-normal w-2/12 text-center align-middle border-b border-gray-200 border-solid text-sm whitespace-nowrap">
+                          <span class="font-semibold leading-tight dark:text-white text-xs">
+                            @if ($booking->status == 'pending')
+                              <span class="py-2.2 px-3.6 text-xs rounded-md w-full inline-block whitespace-nowrap text-center text-white bg-gradient-to-tl from-blue-600 to-cyan-400 align-baseline font-bold uppercase leading-none">Pending</span>
+                            @elseif($booking->status == 'completed')
+                              <span class="py-2.2 px-3.6 text-xs rounded-md w-full inline-block whitespace-nowrap text-center text-white bg-gradient-to-tl from-green-600 to-lime-400 align-baseline font-bold uppercase leading-none">Completed</span>
+                            @elseif($booking->status == 'ongoing')
+                              <span class="py-2.2 px-3.6 text-xs rounded-md w-full inline-block whitespace-nowrap text-center text-white bg-gradient-to-tl from-red-600 to-rose-400 align-baseline font-bold uppercase leading-none">Ongoing</span>
+                            @endif
+                          </span>
+                        </td>
                         <td class="leading-normal text-sm">
-                          <a href="javascript:;" >
+                          <a href="{{route('viewAppointment', $booking->id)}}" >
                               <i class="fas fa-eye text-slate-400 dark:text-white/70">&nbsp; view</i>
                           </a>
                       </td>
                     </tr>
                     @endforeach
                   </tbody>
-                  <tfoot>
-                      <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Accept Currency</th>
-                        <th>Fee Type</th>
-                        <th>Fee</th>
-                        <th>Action</th>
-                      </tr>
-                  </tfoot>
               </table>
           </div>
           </div>

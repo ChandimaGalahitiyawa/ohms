@@ -30,29 +30,34 @@
                           <th>day</th>
                           <th>duration</th>
                           <th>slots</th>
-                          <th>Fee</th>
                           <th>Action</th>
                       </tr>
                   </thead>
                   <tbody>
-                    @foreach ($availabilities as $availibilty);
+                    @foreach ($availabilities as $availibilty)
                     <tr>
                       <td class="leading-normal text-sm">{{$availibilty->id}}</td>
                       <td class="leading-normal text-sm">{{$availibilty->centre->centre_name}} - {{$availibilty->centre->centre_city}}</td>
                       <td class="leading-normal text-sm">{{$availibilty->day}}</td>
                       <td class="leading-normal text-sm">{{$availibilty->start_time}} - {{$availibilty->end_time}}</td>
                       <td class="leading-normal text-sm">{{$availibilty->slots}}</td>
-                      <td class="leading-normal text-sm">...</td>
-                      <td class="leading-normal text-sm">
-                          <a href="javascript:;" class="mx-4" >
+                      <td class="leading-normal flex justify-end items-center text-sm">
+
+                          <a href="{{route('getUpdateAvailability', $availibilty->id)}}" class="mx-4" >
                               <i class="fas fa-user-edit text-slate-400 dark:text-white/70"></i>
                           </a>
-                          <a href="javascript:;" >
-                              <i class="fas fa-trash text-slate-400 dark:text-white/70"></i>
-                          </a>
+
+                          <form id="delete-form-{{ $availibilty->id }}" action="{{ route('deleteAvailibilty', $availibilty->id) }}" method="POST">
+                            @csrf
+                            <!-- Change the type to "button" -->
+                            <button type="button" onclick="confirmDeletion({{ $availibilty->id }});" class="btn btn-danger">
+                                <i class="fas fa-trash text-slate-400 dark:text-white/70"></i>
+                            </button>
+                        </form>
                       </td>
                   </tr>
-                    @endforeach
+
+                  @endforeach
                    
                   </tbody>
                   <tfoot>
@@ -75,3 +80,9 @@
   </div>
 
 @endsection
+
+
+@push('scripts')
+
+    
+@endpush

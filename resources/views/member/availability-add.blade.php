@@ -111,7 +111,7 @@
                                     }
                                 };
                             });
-                            </script>
+                        </script>
                 
                         <!-- Submit Button -->
                         <div class="text-center">

@@ -65,7 +65,7 @@ class PaymentController extends Controller
     {
         $doctorId = session('doctor_id');
         $centerId = session('center_id');
-        $referenceId = session('reference_id');
+        $referenceId = session('referenceId');
         $queueNo = session('queueNo');
         $total = session('total_amount');
         $date = session('date');

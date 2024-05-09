@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Centre;
 use App\Models\Member;
+use App\Models\DoctorNote;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Models\Specialization;
 use App\Models\WeeklyAvailability;
@@ -21,7 +24,17 @@ class MemberController extends Controller
     // Memebr dashboard route
     public function dashboard()
     {
-        return view('member.dashboard');
+        $user = Auth::user();
+        $member = $user->member;
+        
+        // Assuming Colombo timezone for conversion
+        $today = Carbon::now('Asia/Colombo')->toDateString();
+
+        $todayAppointments = Appointment::where('member_id', $member->id)
+            ->whereDate('appointment_date', $today)
+            ->get();
+
+        return view('member.dashboard', compact('todayAppointments'));
     }
 
     // Member profile route
@@ -41,7 +54,6 @@ class MemberController extends Controller
     // Member regisration
     public function createMember(Request $request)
     {
-
         $validatedData = $request->validate([
             'FirstName' => 'required|string|max:255',
             'LastName' => 'required|string|max:255',
@@ -92,8 +104,14 @@ class MemberController extends Controller
     // Specializations
     public function MemberSpecializations()
     {
+
+        $user = Auth::user();
+
+        $member = $user->member;
+
+        $specializations = $member->specializations;
         
-        return view('member.specializations');
+        return view('member.specializations', compact('specializations'));
     }
     // add Specializations
     public function MemberSpecializationsAdd()
@@ -137,12 +155,15 @@ class MemberController extends Controller
 
         $availabilities = $member->weeklyAvailabilities;
 
-        return view('member.availability', compact('availabilities'));
+        $centres = Centre::all();
+
+        return view('member.availability', compact('availabilities', 'centres'));
     }
 
     public function MemberAvailabilityAdd()
     {
         $centres = Centre::all(); // Fetch all centres
+
         return view('member.availability-add', compact('centres')); 
     }
 
@@ -221,6 +242,94 @@ class MemberController extends Controller
         }
     
         return redirect()->route('MemberAvailability');
+    }
+
+    public function detachSpecialization(Request $request, $id)
+    {
+
+        $user = Auth::user();
+
+        $member = $user->member;
+
+        $member->specializations()->detach($id);
+
+        return redirect()->back()->with('success', 'specilization detached successfully');
+    }
+
+
+    public function fetchAppointmentCountsForCalendar()
+    {
+        $user = Auth::user();
+        $member = $user->member;
+        
+        // Fetch appointment counts grouped by date
+        $appointmentCounts = Appointment::where('member_id', $member->id)
+            ->selectRaw('DATE(appointment_date) as appointment_date, COUNT(*) as appointment_count')
+            ->groupBy('appointment_date')
+            ->get();
+    
+        return response()->json($appointmentCounts);
+    }
+
+
+    public function memberAppointments(){
+
+        $user = Auth::user();
+
+        $member = $user->member;
+
+        $bookings = Appointment::where('member_id', $member->id)->latest()->get();
+
+        return view('member.appointments', compact('bookings'));
+    }
+
+    public function finishAppointment($id){
+
+        $booking = Appointment::findOrFail($id);
+
+
+        return view('member.finishAppointment', compact('booking'));
+    }
+
+
+    public function storeDoctorNotes(Request $request, $id)
+    {
+        // Validate the incoming request
+        $request->validate([
+            'description' => 'required|string',
+            'webcam_capture_file' => 'nullable|file|mimes:pdf,jpeg,png,jpg,gif|max:2048', // Adjust max file size as needed
+        ]);
+
+        // Find the appointment associated with the given ID
+        $appointment = Appointment::findOrFail($id);
+
+        if($appointment->doctorNote){
+            $doctorNote = $appointment->doctorNote;
+        }else{
+            $doctorNote = new DoctorNote();
+        }
+
+        $doctorNote->appointment_id = $appointment->id;
+        $doctorNote->description = $request->input('description');
+
+        // Check if there's a file uploaded
+        if ($request->hasFile('webcam_capture_file')) {
+            // Handle file upload
+            $file = $request->file('webcam_capture_file');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('doctor_notes', $fileName, 'public');
+            $doctorNote->file_path = $filePath;
+        }
+
+        // Save the doctor note
+        $doctorNote->save();
+
+        $appointment->status = 'completed';
+
+        $appointment->save();
+
+        // Optionally, you can redirect the user back with a success message
+        return redirect()->route('viewAppointment', $appointment->id)->with('success', 'Doctor note added successfully!');
     }
     
 }

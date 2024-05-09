@@ -51,13 +51,9 @@
             </div>
           </div>
           <div class="absolute top-0 right-0 flex-col justify-center hidden w-6/12 h-full max-w-full px-3 pr-0 my-auto text-center flex-0 lg:flex">
-            <div class="relative flex flex-col justify-center h-full px-24 m-4 bg-gradient-to-tl from-purple-700 to-pink-500 rounded-xl">
-              <img class="absolute left-0 opacity-40" src="https://demos.creative-tim.com/soft-ui-dashboard-pro/assets/img/shapes/pattern-lines.svg" alt="pattern-lines">
-              <div class="relative">
-                <img class="relative w-full max-w-125 z-2" src="https://demos.creative-tim.com/soft-ui-dashboard-pro/assets/img/illustrations/chat.png" alt="chat-img">
-              </div>
-              <h4 class="mt-12 font-bold text-white">"Attention is the new currency"</h4>
-              <p class="text-white ">The more effortless the writing looks, the more effort the writer actually put into the process.</p>
+            <div class="relative flex flex-col justify-center h-full opacity-90 bg-cover  px-24 m-4 bg-gradient-to-tl from-purple-700 to-pink-500 rounded-xl" style="background-image: url('{{asset('assets/img/cover-photo.webp')}}')">
+             
+              <h4 class="mt-12 font-bold text-8xl text-start text-white">Find Your Doctor Easily.</h4>
             </div>
           </div>
         </div>

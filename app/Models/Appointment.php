@@ -21,12 +21,12 @@ class Appointment extends Model
         'status',
         'notes',
         'total',
-        'reference_id', // Add the reference_id field if you haven't already
+        'reference_id',
     ];
 
     public function patient()
     {
-        return $this->belongsTo(User::class, 'patient_id');
+        return $this->belongsTo(Patient::class, 'patient_id');
     }
 
     public function doctor()
@@ -37,6 +37,11 @@ class Appointment extends Model
     public function center()
     {
         return $this->belongsTo(Centre::class, 'centre_id');
+    }
+
+    public function doctorNote()
+    {
+        return $this->hasOne(DoctorNote::class, 'appointment_id');
     }
 }
 

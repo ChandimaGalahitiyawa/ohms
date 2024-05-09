@@ -30,7 +30,7 @@ class bookingController extends Controller
 
         $allAppointments = Appointment::get();
 
-        $appointments = Appointment::where('member_id', $doctor->id)->where('date', $date)->get();
+        $appointments = Appointment::where('member_id', $doctor->id)->where('appointment_date', $date)->get();
 
         $appointmentCount = count($appointments);
 
@@ -41,7 +41,7 @@ class bookingController extends Controller
         $total = number_format($centerCharge + $doctorCharge, 2);
 
         if ($allAppointments->isEmpty()) {
-            $referenceId = 12333233;
+            $referenceId = 999;
         } else {
             $highestReferenceId = $allAppointments->max('reference_id') ?? 0;
             $referenceId = $highestReferenceId + 1;
@@ -60,6 +60,19 @@ class bookingController extends Controller
         $mybookings = Appointment::where('patient_id', $patient->id)->get();
 
         return view('patient.myBookings', compact('mybookings'));
+    }
+
+
+    public function viewAppointment($id){
+
+        
+        $appointment = Appointment::findOrFail($id);
+
+        $center = $appointment->center;
+
+        $doctor = $appointment->doctor;
+
+        return view('patient.viewAppointment', compact('appointment', 'center', 'doctor'));
     }
 
 }

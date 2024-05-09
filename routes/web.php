@@ -3,9 +3,11 @@
 use App\Models\Member;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\CentreController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\bookingController;
+use App\Http\Controllers\MedicalDataController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PaymentController;
 
@@ -44,12 +46,27 @@ Route::controller(PatientController::class)->group(function () {
 });
 // these are role based routes
 // admin routes
+
+
+Route::prefix('admin')->middleware(['auth:sanctum', 'role:member', config('jetstream.auth_session'), 'verified'])->group(function () {
+
+Route::controller(AvailabilityController::class)->group(function () {
+    Route::get('/member/update-availability/{id}', 'getUpdateAvailability')->name('getUpdateAvailability');
+    Route::post('/member/update-weekly-availability/{id}', 'updateWeeklyAvailability')->name('updateWeeklyAvailability');
+    Route::post('delete-availibilty/{id}', 'deleteAvailibilty')->name('deleteAvailibilty');
+});
+
+});
+
+
 Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstream.auth_session'), 'verified'])->group(function () {
 
     // Admin Settings routes
     Route::controller(AdminController::class)->group(function () {
         // Dashboard routes
         Route::get('/dashboard', 'dashboard')->name('AdminDashboard');
+
+        Route::get('/fetch-data-for-chart', 'fetchDataForChart')->name('fetchDataForChart');
 
         // Settins routes
         Route::get('/settings', 'AdminSettings')->name('AdminSettings');
@@ -81,6 +98,7 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin', config('jetstr
         Route::get('/users/members-add', 'MembersManagementAdd')->name('MembersManagementAdd');
     });
 
+
     // Centre Management routes
     Route::controller(CentreController::class)->group(function () {
         Route::get('/centres', 'CentresManagement')->name('CentresManagement');
@@ -100,7 +118,15 @@ Route::prefix('member')->middleware(['auth:sanctum', 'role:member', config('jets
 
     // member dashboard routes
     Route::controller(MemberController::class)->group(function () {
-        Route::get('/dashboard', 'dashboard')->name('MemberDashboard');
+    Route::get('/dashboard', 'dashboard')->name('MemberDashboard');
+
+    Route::get('/member-appointments', 'memberAppointments')->name('memberAppointments');
+
+    Route::get('/fetch-appointment-counts','fetchAppointmentCountsForCalendar')->name('fetchAppointmentCountsForCalendar');
+
+    Route::get('/finish-appointment/{id}', 'finishAppointment')->name('finishAppointment');
+
+    Route::post('/store-doctor-notes/{id}', 'storeDoctorNotes')->name('storeDoctorNotes');
 
     // member profile routes
     Route::get('/settings', 'MemberSettings')->name('MemberSettings');
@@ -115,15 +141,24 @@ Route::prefix('member')->middleware(['auth:sanctum', 'role:member', config('jets
     Route::get('/specializations', 'MemberSpecializations')->name('MemberSpecializations');
     Route::get('/specializations-add', 'MemberSpecializationsAdd')->name('MemberSpecializationsAdd');
     Route::post('/createSpecialization', 'createSpecialization')->name('createSpecialization');
-
+    Route::post('/detach-specalization/{id}', 'detachSpecialization')->name('detachSpecialization');
     });
-    
 });
 
 Route::controller(PaymentController::class)->group(function () {
     Route::post('/checkout', 'checkout')->name('checkout');
     Route::get('/stripe-success', 'stripeCheckoutSuccess')->name('stripe.checkout.success');
 });
+
+
+Route::prefix('patient')->middleware(['auth:sanctum', 'role:patient|member|admin', config('jetstream.auth_session'), 'verified',])->group(function () {
+
+    Route::controller(bookingController::class)->group(function () {
+        Route::get('view-appointment/{id}','viewAppointment')->name('viewAppointment');
+    });
+
+});
+
 
 Route::prefix('patient')->middleware(['auth:sanctum', 'role:patient', config('jetstream.auth_session'), 'verified',])->group(function () {
 
@@ -133,15 +168,9 @@ Route::prefix('patient')->middleware(['auth:sanctum', 'role:patient', config('je
         Route::get('/search', 'MemberSearch')->name('MemberSearch');
         Route::post('/search', [PatientController::class, 'MemberSearch'])->name('member.search');
         Route::get('/channel ', 'ChannelDoctor')->name('ChannelDoctor');
-
         Route::get('find-bookings/{id}', 'findBookings')->name('findBookings');
-
         // patient profile routes
         Route::get('/settings', 'PatientSettings')->name('PatientSettings');
-
-        // patient data routes
-        Route::get('/medical-data', 'PatientData')->name('PatientData');
-
     });
 
     Route::controller(bookingController::class)->group(function () {
@@ -152,5 +181,14 @@ Route::prefix('patient')->middleware(['auth:sanctum', 'role:patient', config('je
         Route::get('payment-cancel', 'paymentCancel')->name('payment.cancel');
         Route::get('payment-notify', 'paymentNotify')->name('payment.notify');
         Route::get('my-bookings', 'myBookings')->name('myBookings');
+    });
+
+    Route::controller(MedicalDataController::class)->group(function () {
+        Route::get('/medical-data', 'PatientData')->name('PatientData');
+        Route::get('/create-medical=data', 'createMedicalData')->name('createMedicalData');
+        Route::post('/store-medica-data', 'storeMedicalData')->name('storeMedicalData');
+        Route::post('delete-medical-data/{id}', 'deleteMedicalData')->name('deleteMedicalData');
+        Route::get('/update-medical-data/{id}', 'getUpdateMedicaldata')->name('getUpdateMedicaldata');
+        Route::post('/update-medical-data/{id}', 'updateMedicalData')->name('updateMedicalData');
     });
 });
