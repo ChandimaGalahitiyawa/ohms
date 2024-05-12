@@ -40,7 +40,7 @@ class MedicalDataController extends Controller
             'stu-img' => 'nullable|file|mimes:pdf,jpeg,png,jpg,gif|max:2048', // Validate the uploaded image
             'webcam_capture_file' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate the captured image from webcam
         ]);
-
+        
         $user = Auth::user();
 
         $patient = $user->patient;
@@ -50,6 +50,7 @@ class MedicalDataController extends Controller
         $medicalData->title = $request->title;
         $medicalData->patient_id = $patient->id;
         $medicalData->description = $request->description;
+
 
         // Handle file upload from form
         if ($request->hasFile('stu-img')) {
@@ -65,11 +66,13 @@ class MedicalDataController extends Controller
             $medicalData->file_path = $filePath;
         }
 
+
+
         // Save the MedicalData instance
         $medicalData->save();
 
         // Redirect back with success message or return JSON response
-        return redirect()->back()->with('success', 'Medical data added successfully!');
+        return redirect()->route('PatientData')->with('success', 'Medical data added successfully!');
     }
 
 

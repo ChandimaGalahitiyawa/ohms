@@ -3,8 +3,8 @@
     <div class="w-full lg:w-4/12 pr-2">
         <select name="search_by" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text:white/80 text-sm leading-5.6 ease-soft appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
             <option value="search_by_doctor">Doctor</option>
-            <option value="search_by_centre">Centre</option>
-            <option value="search_by_specialization">Specialization</option>
+            {{-- <option value="search_by_centre">Centre</option>
+            <option value="search_by_specialization">Specialization</option> --}}
         </select>
     </div>
 
