@@ -43,7 +43,7 @@
                         </div> 
                     </div>
                 
-                    <button type="submit" id="submit-fr" href="javascript:;" class="inline-block float-right px-8 py-2 mt-16 mb-0 font-bold text-right text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs dark:bg-gradient-to-tl dark:from-slate-850 dark:to-gray-850 bg-gradient-to-tl from-gray-900 to-slate-800 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25">Create Student</button>
+                    <button type="submit" id="submit-fr" href="javascript:;" class="inline-block float-right px-8 py-2 mt-16 mb-0 font-bold text-right text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs dark:bg-gradient-to-tl dark:from-slate-850 dark:to-gray-850 bg-gradient-to-tl from-gray-900 to-slate-800 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25">Submit</button>
                 
                 </div>
                 </div>
@@ -241,7 +241,7 @@
                     .finally(() => {
                         // Enable the submit button and restore its original content
                         submitButton.disabled = false;
-                        submitButton.innerHTML = 'Create Student';
+                        submitButton.innerHTML = 'Submit';
                     });
             } else {
                 // If no webcam capture file, submit the form as usual
@@ -257,45 +257,6 @@
 
             // Call the function to handle form submission
             handleFormSubmission();
-        });
-    });
-</script>
-
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get the phone input element
-        var phoneInput = document.querySelector('input[name="phone"]');
-
-        // Add an event listener for the input event
-        phoneInput.addEventListener('input', function() {
-            // Get the value of the input
-            var inputValue = phoneInput.value.trim();
-
-            // Check if the input starts with '94'
-            if (!inputValue.startsWith('94')) {
-                // If not, add '94' to the beginning
-                phoneInput.value = '94' + inputValue;
-            }
-
-            // Check if '0' is used after '94'
-            if (inputValue.startsWith('940')) {
-                // Remove the '0' after '94'
-                phoneInput.value = '94' + inputValue.slice(3);
-            }
-        });
-
-        // Add an event listener for form submission (optional)
-        // You can add additional validation logic here if needed
-        document.querySelector('form').addEventListener('submit', function(event) {
-            var inputValue = phoneInput.value.trim();
-
-            // Validate if '94' is present and '0' is not used after '94'
-            if (!inputValue.startsWith('94') || inputValue.startsWith('940')) {
-                alert('Invalid phone number format');
-                event.preventDefault(); // Prevent form submission
-            }
         });
     });
 </script>

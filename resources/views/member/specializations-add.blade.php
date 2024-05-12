@@ -32,56 +32,13 @@
                     </div>
                     <div class="w-full lg:w-4/12">
                         <div class="flex items-center">
-                            <input type="number" step="any" name="specializations[0][fee]" placeholder="Fee in LKR" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline border border-solid border-gray-300 rounded-lg">
-                            <!-- Remove button -->
-                            <button type="button" class="remove-day ml-2 text-red-500" onclick="removeSelection(this)">X</button>
-                        </div>
-                    </div>
+                            <input type="number" step="any" name="specializations[0][fee]" placeholder="Fee in LKR" class="block w-full px-3 py-2 focus:shadow-soft-primary-outline border border-solid border-gray-300 rounded-lg">                    </div>
                 </div>
             </div>
-        </div>
-        <button type="button" id="more-specializations" class="inline-block mb-2 ml-1 font-bold text-slate-500 text-xs">Add More</button>
-        
-        {{-- custom javascript --}}
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const container = document.getElementById('specializations-container');
-                
-                // Function to add more specialization slots
-                document.getElementById('more-specializations').addEventListener('click', function() {
-                    const lastSpecialization = container.querySelector('.specializations:last-child');
-                    const allInputs = lastSpecialization.querySelectorAll('input, select');
-                    const allFilled = Array.from(allInputs).every(input => input.value.trim() !== '');
-
-                    if (allFilled) {
-                        const newSpecialization = lastSpecialization.cloneNode(true);
-                        let newIndex = container.querySelectorAll('.specializations').length; // Get the new index based on count
-                        newSpecialization.querySelector('select').name = `specializations[${newIndex}][id]`;
-                        newSpecialization.querySelector('input[type=number]').name = `specializations[${newIndex}][fee]`;
-
-                        newSpecialization.querySelectorAll('input').forEach(input => input.value = '');
-                        newSpecialization.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
-                        container.appendChild(newSpecialization);
-                    } else {
-                        alert("Please fill all fields before adding more.");
-                    }
-                });
-            
-                // Function to remove a specialization
-                window.removeSelection = function(element) {
-                    if (container.querySelectorAll('.specializations').length > 1) {
-                        element.closest('.specializations').remove();
-                    } else {
-                        alert("At least one specialization is required.");
-                    }
-                };
-            });
-            </script>
-            
-
+        </div>        
         <!-- Submit Button -->
         <div class="text-center">
-            <button type="submit" class="inline-block w-full px-6 py-3 mt-2 pt-10 font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25">Submit</button>
+            <button type="submit" class="inline-block w-full px-6 py-3 mt-2 mb-0 font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25">Submit</button>
         </div>
     </form>
     </div>
