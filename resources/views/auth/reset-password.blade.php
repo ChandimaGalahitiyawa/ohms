@@ -1,0 +1,54 @@
+@extends('auth.layouts.app')
+
+@section('content')
+<section>
+    <div class="relative flex items-center min-h-screen p-0 overflow-hidden bg-center bg-cover">
+      <div class="container z-1">
+        <div class="flex flex-wrap -mx-3">
+
+          <div class="flex flex-col w-full max-w-full px-3 mx-auto lg:mx-0 shrink-0 md:flex-0 md:w-7/12 lg:w-5/12 xl:w-4/12">
+
+            <div class="relative flex flex-col min-w-0 break-words bg-transparent border-0 shadow-none lg:py4 dark:bg-gray-950 rounded-2xl bg-clip-border">
+              <div class="p-6 pb-0 mb-0">
+                <h4 class="font-bold">Set New Password</h4>
+              </div>
+
+              <div class="flex-auto p-6">
+                <form method="POST" action="{{ route('password.update') }}">
+                    @csrf
+                    <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                    <div class="mb-4">
+                        <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Email Address</label>
+                        <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username"  class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"/>
+                      </div>
+                  <div class="mb-4">
+                    <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">New Password</label>
+                    <input id="password" type="password" name="password" required autocomplete="new-password" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
+                  </div>
+                  <div class="mb-4">
+                    <label class="inline-block mb-2 ml-1 font-bold text-slate-700 text-xs">Confirm New Password</label>
+                    <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" class="focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="w-full inline-block px-16 py-3.5 mb-0 mt-0 font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-sm ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25">Send</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="absolute top-0 right-0 flex-col justify-center hidden w-6/12 h-full max-w-full px-3 pr-0 my-auto text-center flex-0 lg:flex">
+            <div class="relative flex flex-col justify-center h-full px-24 m-4 bg-gradient-to-tl from-purple-700 to-pink-500 rounded-xl">
+              <img class="absolute left-0 opacity-40" src="https://demos.creative-tim.com/soft-ui-dashboard-pro/assets/img/shapes/pattern-lines.svg" alt="pattern-lines">
+              <div class="relative">
+                <img class="relative w-full max-w-125 z-2" src="https://demos.creative-tim.com/soft-ui-dashboard-pro/assets/img/illustrations/lock.png" alt="chart-ill">
+              </div>
+              <h4 class="mt-12 font-bold text-white">"Lorem ipsum"</h4>
+              <p class="text-white ">Just as it takes a company to sustain a product, it takes a community to sustain a protocol.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  </section>
+@endsection
