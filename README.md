@@ -24,7 +24,8 @@ To install and run the Open Healthcare Management System (OHMS) locally or on a 
 1. **Clone the repository**
 
    git clone https://github.com/ChandimaGalahitiyawa/ohms.git
-   cd your-repo-name
+   
+   cd ohms
 
 2. **Install dependencies**
 
