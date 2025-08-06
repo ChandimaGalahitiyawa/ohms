@@ -62,14 +62,6 @@ To install and run the Open Healthcare Management System (OHMS) locally or on a 
    php artisan serve  
    Then open http://localhost:8000 in your browser.
 
-### Default Admin Credentials
-
-- Email: admin@example.com  
-- Password: admin@321
-
-> ⚠️ Change these credentials before deploying to production.
-
-
 ## Default Admin Credentials
 
 To access the system with administrative privileges, use the following default credentials:
