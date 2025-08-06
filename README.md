@@ -17,6 +17,58 @@ The primary objective of OHMS is to develop a secure, streamlined Healthcare Mem
 - Clear medication and treatment communication  
 - A patient-centric approach to care delivery
 
+## Installation Instructions
+
+To install and run the Open Healthcare Management System (OHMS) locally or on a server:
+
+1. **Clone the repository**
+
+   git clone https://github.com/your-username/your-repo-name.git  
+   cd your-repo-name
+
+2. **Install dependencies**
+
+   composer install  
+   npm install
+
+3. **Set up environment configuration**
+
+   cp .env.example .env  
+   Then update `.env` with:
+   - Database credentials  
+   - Stripe (test or live) keys  
+   - SMTP mail settings
+
+4. **Optimize the application**
+
+   php artisan optimize
+
+5. **Create a storage symlink**
+
+   php artisan storage:link
+
+6. **Build frontend assets**
+
+   npm run dev  
+   (Use `npm run build` for production)
+
+7. **Run migrations and seed the database**
+
+   php artisan migrate:fresh --seed
+
+8. **Start the development server**
+
+   php artisan serve  
+   Then open http://localhost:8000 in your browser.
+
+### Default Admin Credentials
+
+- Email: admin@example.com  
+- Password: admin@321
+
+> ⚠️ Change these credentials before deploying to production.
+
+
 ## Default Admin Credentials
 
 To access the system with administrative privileges, use the following default credentials:
