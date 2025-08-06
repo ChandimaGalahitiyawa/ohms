@@ -6,11 +6,29 @@ Welcome to the Open Healthcare Management System (OHMS)! This system aims to rev
 
 ## Background of the Project
 
-OHMS emerged in response to the challenges faced by SME medical centers and individual practitioners. Traditional healthcare appointment systems and management solutions often suffer from inefficiencies that hinder effective patient care. OHMS is designed to address these challenges and provide a comprehensive solution that meets the unique needs of SME medical centers and practitioners.
+OHMS emerged in response to the challenges faced by SME medical centers and individual practitioners. Traditional healthcare appointment systems and management solutions often suffer from inefficiencies that hinder effective patient care. OHMS is designed to address these challenges and provide a comprehensive solution tailored to the unique needs of SME medical centers and independent practitioners.
 
 ## Objectives and Scope
 
-The primary objective of OHMS is to develop a secure, streamlined Healthcare Membership Management System (HMMS) tailored explicitly for SME medical centers and practitioners. By improving patient engagement, healthcare provider efficiency, and overall healthcare outcomes, OHMS aims to enhance the quality of care delivery. The scope of OHMS includes intuitive appointment scheduling, robust patient data management, clear medication communication, and fostering a patient-centric approach to healthcare delivery.
+The primary objective of OHMS is to develop a secure, streamlined Healthcare Membership Management System (HMMS) specifically for SME medical centers and practitioners. OHMS focuses on improving patient engagement, increasing healthcare provider efficiency, and elevating overall healthcare outcomes. Key features include:
 
-## Created by
-Group 11, 2024 T1 Applied Project - CSG3101.2 Students.
+- Intuitive appointment scheduling  
+- Robust patient data management  
+- Clear medication and treatment communication  
+- A patient-centric approach to care delivery
+
+## Developed By
+
+**Project Group 11 – Final Year Applied Project**  
+**Unit:** CSG3101.2 – Applied Project  
+**Trimester:** 2024 T1, ECU SRI
+
+**Students:**
+- Chandima Galahitiyawa (10637143)  
+- Hiruni Hansika (10639177)  
+- Packiyanathan Jeewandhiga (10635068)  
+- Minadi Vimansa (10624233)
+
+**Supervised by:**
+- Lead Coordinator: Dr. Maneesha Caldera  
+- Project Supervisor: Ms. Inoshi Madushika Jayaweera
