@@ -1,19 +1,43 @@
+# Laravel & PHP-specific
 /.phpunit.cache
-/node_modules
-/public/build
-/public/hot
-/public/storage
+.phpunit.result.cache
 /storage/*.key
-vendor
+/public/storage
+
+# Environment files
 .env
 .env.backup
 .env.production
-.phpunit.result.cache
-Homestead.json
-Homestead.yaml
-auth.json
+
+# Dependencies
+/vendor/
+/node_modules/
+
+# Front-end build artifacts
+/public/build
+/public/hot
+
+# Debug & error logs
 npm-debug.log
 yarn-error.log
-/.fleet
-/.idea
-/.vscode
+
+# IDE/editor configurations
+/.idea/
+/.vscode/
+/.fleet/
+
+# Homestead (optional, if used)
+/Homestead.json
+/Homestead.yaml
+
+# Composer credentials
+auth.json
+
+# OS-generated junk files
+.DS_Store
+Thumbs.db
+
+# Docker/Sail (optional, if using Laravel Sail)
+# .docker/
+# docker-compose.override.yml
+# sail.log
