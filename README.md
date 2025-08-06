@@ -86,22 +86,26 @@ To access the system with administrative privileges, use the following default c
 **Unit:** CSG3101.2 – Applied Project  
 **Trimester:** 2024 T1, ECU SRI
 
-## Team Profiles & Contact
+## Project Contributors
 
-Connect with the developers and supervisor involved in the project:
+**Students (Group 11 – CSG3101.2 Applied Project):**
 
-### Students – GitHub Profiles
+- **Chandima Galahitiyawa** (10637143)  
+  GitHub: [github.com/ChandimaGalahitiyawa](https://github.com/ChandimaGalahitiyawa)
 
-| Student                  | GitHub URL                                               |
-|--------------------------|----------------------------------------------------------|
-| Chandima Galahitiyawa    | https://github.com/ChandimaGalahitiyawa                 |
-| Hiruni Hansika           | https://github.com/Hirunioff                             |
-| Packiyanathan Jeewandhiga| https://github.com/PJeew28                               |
-| Minadi Vimansa           | https://github.com/minadi‑vimansa                        |
+- **Hiruni Hansika** (10639177)  
+  GitHub: [github.com/Hirunioff](https://github.com/Hirunioff)
 
-### Supervisor – LinkedIn
+- **Packiyanathan Jeewandhiga** (10635068)  
+  GitHub: [github.com/PJeew28](https://github.com/PJeew28)
 
-- Ms. Inoshi Madushika Jayaweera – [LinkedIn Profile](https://www.linkedin.com/in/inoshi-jayaweera-66915a3b/)
+- **Minadi Vimansa** (10624233)  
+  GitHub: [github.com/minadi-vimansa](https://github.com/minadi-vimansa)
+
 **Supervised by:**
-- Lead Coordinator: Dr. Maneesha Caldera  
-- Project Supervisor: Ms. Inoshi Madushika Jayaweera
+
+- **Lead Coordinator:** Dr. Maneesha Caldera  
+  LinkedIn: [linkedin.com/in/dr-maneesha-c-04a65221a](https://www.linkedin.com/in/dr-maneesha-c-04a65221a/)
+
+- **Project Supervisor:** Ms. Inoshi Madushika Jayaweera  
+  LinkedIn: [linkedin.com/in/inoshi-jayaweera-66915a3b](https://www.linkedin.com/in/inoshi-jayaweera-66915a3b/)
