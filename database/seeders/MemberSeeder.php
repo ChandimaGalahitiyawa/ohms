@@ -17,7 +17,7 @@ class MemberSeeder extends Seeder
         $admin = User::create([
             'name' => 'Member',
             'email' => 'member@example.com',
-            'password' => Hash::make('B@b123321'),
+            'password' => Hash::make('member@321'),
         ]);
 
         // Assign role to above user

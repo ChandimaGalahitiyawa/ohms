@@ -48,11 +48,13 @@
               <div class="border-black/12.5 rounded-b-2xl border-t-0 border-solid p-6 text-center pt-0 px-1 sm:px-6">
                 <p class="mx-auto mb-4">Don't have an account? <a href="{{ route('register') }}" class="font-bold text-transparent bg-clip-text bg-gradient-to-tl from-purple-700 to-pink-500">Sign up</a></p>
               </div>
-            </div>
+              <p class="mt-6 text-sm text-gray-600 text-justify leading-relaxed">
+                This project was developed by Project Group 11, comprising students Chandima Galahitiyawa (10637143), Hiruni Hansika (10639177), Packiyanathan Jeewandhiga (10635068), and Minadi Vimansa (10624233). The group worked under the academic guidance of Lead Coordinator Dr. Maneesha Caldera and Project Supervisor Ms. Inoshi Madushika Jayaweera. This was completed as part of the final-year Applied Project – CSG3101.2 (2024 T1, ECU SRI).
+              </p>      
+            </div>          
           </div>
           <div class="absolute top-0 right-0 flex-col justify-center hidden w-6/12 h-full max-w-full px-3 pr-0 my-auto text-center flex-0 lg:flex">
             <div class="relative flex flex-col justify-center h-full opacity-90 bg-cover  px-24 m-4 bg-gradient-to-tl from-purple-700 to-pink-500 rounded-xl" style="background-image: url('{{asset('assets/img/cover-photo.webp')}}')">
-             
               <h4 class="mt-12 font-bold text-8xl text-start text-white">Find Your Doctor Easily.</h4>
             </div>
           </div>
