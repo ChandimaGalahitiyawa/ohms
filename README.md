@@ -60,7 +60,7 @@ To install and run the Open Healthcare Management System (OHMS) locally or on a 
 8. **Start the development server**
 
    php artisan serve  
-   Then open http://localhost:8000 in your browser.
+   Then open http://127.0.0.1:8000 in your browser.
 
 ## Default Admin Credentials
 
