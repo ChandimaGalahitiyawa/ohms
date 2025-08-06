@@ -17,6 +17,16 @@ The primary objective of OHMS is to develop a secure, streamlined Healthcare Mem
 - Clear medication and treatment communication  
 - A patient-centric approach to care delivery
 
+## Default Admin Credentials
+
+To access the system with administrative privileges, use the following default credentials:
+
+- **Name:** Admin  
+- **Email:** `admin@example.com`  
+- **Password:** `admin@321`
+
+> ⚠️ **Important:** For security purposes, it is strongly recommended to change the default admin password after the first login in a production environment.
+
 ## Developed By
 
 **Project Group 11 – Final Year Applied Project**  
